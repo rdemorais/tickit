@@ -29,14 +29,11 @@ public class PessoaImpl implements Pessoa{
 	@Column(name="co_pessoa")
 	private Long id;
 	
-	@Column(name="ds_avatar")
+	@Column(name="ds_avatar", columnDefinition="TEXT")
 	private String avatar;
 	
 	@Column(name="ds_nome")
 	private String nome;
-	
-	@Column(name="ds_sobrenome")
-	private String sobrenome = "";
 	
 	@Column(name="dt_nascimento")
 	private Date datNascimento;
@@ -50,9 +47,6 @@ public class PessoaImpl implements Pessoa{
 	@Column(name="ds_comentario")
 	private String comentario;
 	
-	@Column(name="ds_email")
-	private String email;
-	
 	@Column(name="ds_website")
 	private String website;
 	
@@ -62,7 +56,7 @@ public class PessoaImpl implements Pessoa{
 	@Column(name="ds_twitter")
 	private String twitter;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, targetEntity=UsuarioImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL, optional = true, targetEntity=UsuarioImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name="co_usuario")
 	private Usuario usuario;
 	
@@ -93,12 +87,6 @@ public class PessoaImpl implements Pessoa{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getSobrenome() {
-		return sobrenome;
-	}
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
 	public Date getDatNascimento() {
 		return datNascimento;
 	}
@@ -116,12 +104,6 @@ public class PessoaImpl implements Pessoa{
 	}
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getWebsite() {
 		return website;

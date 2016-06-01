@@ -17,11 +17,11 @@ public class FuncionarioImpl extends PessoaImpl implements Funcionario{
 	@Column(name="ds_salario")
 	private Double salario;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, targetEntity=CargoImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL, optional = true, targetEntity=CargoImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name="co_cargo", unique=false)
 	private Cargo cargo;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, targetEntity=VeiculoImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
+	@OneToOne(cascade = CascadeType.ALL, optional = true, targetEntity=VeiculoImpl.class, fetch = FetchType.LAZY, orphanRemoval = true)
 	@JoinColumn(name="co_veiculo", unique=false)
 	private Veiculo veiculo;
 	

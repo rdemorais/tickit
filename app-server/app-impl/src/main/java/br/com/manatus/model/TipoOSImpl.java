@@ -17,7 +17,7 @@ public class TipoOSImpl implements TipoOS{
     @Column(name="co_tipo_os")
     private Long id;
 	
-	@Column(name="no_tipo_os")
+	@Column(name="ds_tipo_os")
 	private String tipoOs;
 
 	public Long getId() {

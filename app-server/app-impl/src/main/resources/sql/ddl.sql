@@ -21,8 +21,8 @@
         ds_habilidade varchar(255),
         ds_salario float8,
         co_pessoa int8 not null,
-        co_cargo int8 not null,
-        co_veiculo int8 not null,
+        co_cargo int8,
+        co_veiculo int8,
         primary key (co_pessoa)
     );
     create table tb_grupo_seg (
@@ -79,23 +79,21 @@
     create table tb_pessoa (
         co_pessoa int8 not null,
         ind_auto_registro boolean,
-        ds_avatar varchar(255),
+        ds_avatar TEXT,
         ds_comentario varchar(255),
         ds_cpf_cnpj varchar(255),
         dt_nascimento timestamp,
-        ds_email varchar(255),
         ds_facebook varchar(255),
         ds_genero varchar(255),
         ds_nome varchar(255),
-        ds_sobrenome varchar(255),
         ds_twitter varchar(255),
         ds_website varchar(255),
-        co_usuario int8 not null,
+        co_usuario int8,
         primary key (co_pessoa)
     );
     create table tb_tipo_os (
         co_tipo_os int8 not null,
-        no_tipo_os varchar(255),
+        ds_tipo_os varchar(255),
         primary key (co_tipo_os)
     );
     create table tb_usuario_grupo_seg (
@@ -122,14 +120,8 @@
         ds_modelo varchar(255),
         primary key (co_veiculo)
     );
-    alter table tb_funcionario 
-        add constraint UK_nmwflnpnhlul51h0icjtn9ttr  unique (co_cargo);
-    alter table tb_funcionario 
-        add constraint UK_15kowmk0ygmd47tlir4umhclg  unique (co_veiculo);
     alter table tb_permissao_seg 
         add constraint UK_2dbav7bxbxlfmmiml9nftg3l6  unique (ds_nome);
-    alter table tb_pessoa 
-        add constraint UK_3cl8l52k8fl9xfjt9ybhxl3pm  unique (co_usuario);
     alter table tb_usuario_seg 
         add constraint UK_8ljssx5akrjpqu6cfe00kw71u  unique (ds_login);
     alter table tb_cliente 

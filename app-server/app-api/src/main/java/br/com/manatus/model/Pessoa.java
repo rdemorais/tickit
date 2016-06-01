@@ -13,16 +13,11 @@ public interface Pessoa {
 	public void setAvatar(String avatar);
 	public String getNome();
 	public void setNome(String nome);
-	public String getSobrenome();
-	public void setSobrenome(String sobrenome);
-	public Date getDatNascimento();
 	public void setDatNascimento(Date datNascimento);
 	public String getGenero();
 	public void setGenero(String genero);
 	public String getComentario();
 	public void setComentario(String comentario);
-	public String getEmail();
-	public void setEmail(String email);
 	public String getWebsite();
 	public void setWebsite(String website);
 	public String getFacebook();
