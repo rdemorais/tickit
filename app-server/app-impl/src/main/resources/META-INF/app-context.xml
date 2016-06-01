@@ -33,6 +33,9 @@
 		id="transactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+	
+	<bean id="osService" class="br.com.manatus.service.OSServiceImpl"/>
+	<bean id="osDao" class="br.com.manatus.dao.OSDaoImpl"/>
 
 	<tx:annotation-driven />
 

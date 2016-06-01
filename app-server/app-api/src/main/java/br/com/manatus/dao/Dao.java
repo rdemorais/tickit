@@ -1,6 +1,8 @@
-package br.com.manatus;
+package br.com.manatus.dao;
 
 import java.io.Serializable;
+
+import br.com.manatus.exc.AkulaRuntimeException;
 
 public interface Dao {
 	public void create(Object o) throws AkulaRuntimeException;

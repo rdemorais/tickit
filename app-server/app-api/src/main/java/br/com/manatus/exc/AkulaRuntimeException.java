@@ -1,4 +1,4 @@
-package br.com.manatus;
+package br.com.manatus.exc;
 
 public class AkulaRuntimeException extends RuntimeException{
 

@@ -12,6 +12,15 @@
         <class>br.com.akula.impl.model.PermissaoImpl</class>
         <class>br.com.akula.impl.model.UsuarioImpl</class>
         <class>br.com.akula.impl.model.UsuarioGrupoImpl</class>
+        
+        <class>br.com.manatus.model.CargoImpl</class>
+        <class>br.com.manatus.model.CategoriaDemandaImpl</class>
+        <class>br.com.manatus.model.PessoaImpl</class>
+        <class>br.com.manatus.model.ClienteImpl</class>
+        <class>br.com.manatus.model.TipoOSImpl</class>
+        <class>br.com.manatus.model.VeiculoImpl</class>
+        <class>br.com.manatus.model.FuncionarioImpl</class>
+        <class>br.com.manatus.model.OSImpl</class>
         <exclude-unlisted-classes/>
          
         <properties>

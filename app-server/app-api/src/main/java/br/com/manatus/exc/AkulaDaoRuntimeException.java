@@ -1,4 +1,4 @@
-package br.com.manatus;
+package br.com.manatus.exc;
 public class AkulaDaoRuntimeException extends AkulaRuntimeException {
 
 	private static final long serialVersionUID = -7649012428016303326L;

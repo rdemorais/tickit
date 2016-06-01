@@ -16,6 +16,14 @@ import br.com.akula.impl.model.PermissaoGrupoUsuarioImpl;
 import br.com.akula.impl.model.PermissaoImpl;
 import br.com.akula.impl.model.UsuarioGrupoImpl;
 import br.com.akula.impl.model.UsuarioImpl;
+import br.com.manatus.model.CargoImpl;
+import br.com.manatus.model.CategoriaDemandaImpl;
+import br.com.manatus.model.ClienteImpl;
+import br.com.manatus.model.FuncionarioImpl;
+import br.com.manatus.model.OSImpl;
+import br.com.manatus.model.PessoaImpl;
+import br.com.manatus.model.TipoOSImpl;
+import br.com.manatus.model.VeiculoImpl;
 
 public class SchemaTranslator {
 	private Configuration config = null;
@@ -85,7 +93,15 @@ public class SchemaTranslator {
 				PaginaImpl.class, 
 				PermissaoGrupoUsuarioImpl.class, 
 				PermissaoImpl.class,
-				UsuarioGrupoImpl.class};
+				UsuarioGrupoImpl.class,
+				CargoImpl.class,
+				CategoriaDemandaImpl.class,
+				PessoaImpl.class,
+				ClienteImpl.class,
+				TipoOSImpl.class,
+				VeiculoImpl.class,
+				FuncionarioImpl.class,
+				OSImpl.class};
 
 		translator.setDialect("org.hibernate.dialect.PostgreSQLDialect")
 		.addAnnotatedClasses(entiClassesMA)
