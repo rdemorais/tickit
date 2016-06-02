@@ -34,11 +34,17 @@
     );
     create table tb_os (
         co_os int8 not null,
+        dt_delete timestamp,
+        dt_insert timestamp,
+        dt_update timestamp,
         dt_agendamento timestamp,
         dt_chamado timestamp,
-        dt_limite_agendamento timestamp,
+        dt_limite_atendimento timestamp,
         ds_demanda TEXT,
         ds_solucao TEXT,
+        co_usuario_delete int8,
+        co_usuario_insert int8,
+        co_usuario_update int8,
         co_categoria_demanda int8,
         co_cliente int8,
         co_tecnico_agendamento int8,
@@ -140,6 +146,18 @@
         add constraint FK_rmaij0ms9v7wfkbusivr1wj3r 
         foreign key (co_pessoa) 
         references tb_pessoa;
+    alter table tb_os 
+        add constraint FK_44cp1gkfkgpu9di189kda8xdu 
+        foreign key (co_usuario_delete) 
+        references tb_usuario_seg;
+    alter table tb_os 
+        add constraint FK_i1p1dbt7ela3sj1lai8cnswgq 
+        foreign key (co_usuario_insert) 
+        references tb_usuario_seg;
+    alter table tb_os 
+        add constraint FK_pju9j1t73qxab28ws8o224h2 
+        foreign key (co_usuario_update) 
+        references tb_usuario_seg;
     alter table tb_os 
         add constraint FK_2nf84catspocxnrm9p8opeacs 
         foreign key (co_categoria_demanda) 

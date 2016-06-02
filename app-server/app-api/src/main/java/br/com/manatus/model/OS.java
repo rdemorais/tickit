@@ -2,7 +2,9 @@ package br.com.manatus.model;
 
 import java.util.Date;
 
-public interface OS {
+import br.com.akula.api.model.Auditavel;
+
+public interface OS extends Auditavel{
 	public Long getId();
 	public void setId(Long id);
 	public Date getDataHoraChamado();

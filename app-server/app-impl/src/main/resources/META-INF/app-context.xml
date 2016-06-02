@@ -34,6 +34,7 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
+	<bean id="converterService" class="br.com.manatus.service.ConverterServiceImpl"/>
 	<bean id="osService" class="br.com.manatus.service.OSServiceImpl"/>
 	<bean id="osDao" class="br.com.manatus.dao.OSDaoImpl"/>
 

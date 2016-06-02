@@ -13,9 +13,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.com.akula.impl.model.AbstractAuditavel;
+
 @Entity(name="OS")
 @Table(name="tb_os")
-public class OSImpl implements OS{
+public class OSImpl extends AbstractAuditavel implements OS{
 
 	@Id
     @SequenceGenerator(name="TickIt_SeqGen", sequenceName="tickit_os_seq")
@@ -157,5 +159,4 @@ public class OSImpl implements OS{
 				+ ", tipoOs=" + tipoOs + ", tecResponsavel=" + tecResponsavel
 				+ ", tecAgendamento=" + tecAgendamento + "]";
 	}
-	
 }
