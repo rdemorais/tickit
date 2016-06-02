@@ -24,6 +24,44 @@ insert into tb_cargo(co_cargo, no_cargo) values(nextval('tickit_cargo_seq'), 'Pr
 insert into tb_cargo(co_cargo, no_cargo) values(nextval('tickit_cargo_seq'), 'Secretaria');
 insert into tb_cargo(co_cargo, no_cargo) values(nextval('tickit_cargo_seq'), 'Engenheiro');
 
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Ameaças Virtuais');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Compra de Produtos');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Controle de Qualidade');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Desenvolvimento');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Design');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Email');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Gerência Eletrônica de Documentos');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Hardware');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Hospedagem');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Infra-Estrutura');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Internet');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção Antenas e controle de acesso');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção CFTV');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção Cancelas');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção Catracas');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção Elétrica');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção Predial');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção de Estação de Trabalho');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção de Inferfone');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Manutenção em Servidor');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Montagem e Instalação de Estação de Trabalho');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Pacote Office');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Periféricos');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Processos Internos');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Proposta Comercial');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Rede Local');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Rede sem Fio');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Segurança Digital');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Segurança Predial');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Sistema Operacional');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Softwares de Terceiros');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Soluções de backup');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Suporte ao Cliente');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Suporte ao Usuário');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Translado');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Venda de Produtos');
+insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Venda de Serviços');
+
 insert into tb_pagina_seg(
 	co_pagina, ds_nome, ds_identificador_unico, ds_url, ds_descricao, ds_icone, link_barra, ind_ativo, ind_pode_ser_pagina_padrao, co_pagina_pai, ordem)	
 	values (

@@ -32,8 +32,8 @@ public class OSImpl implements OS{
 	@Column(name="ds_solucao", columnDefinition="TEXT")
 	private String sugestaoSolucao;
 	
-	@Column(name="dt_limite_agendamento")
-	private Date dataLimiteAgendamento;
+	@Column(name="dt_limite_atendimento")
+	private Date dataLimiteAtendimento;
 	
 	@Column(name="dt_agendamento")
 	private Date dataAgendamento;
@@ -90,12 +90,12 @@ public class OSImpl implements OS{
 		this.sugestaoSolucao = sugestaoSolucao;
 	}
 
-	public Date getDataLimiteAgendamento() {
-		return dataLimiteAgendamento;
+	public Date getDataLimiteAtendimento() {
+		return dataLimiteAtendimento;
 	}
 
-	public void setDataLimiteAgendamento(Date dataLimiteAgendamento) {
-		this.dataLimiteAgendamento = dataLimiteAgendamento;
+	public void setDataLimiteAtendimento(Date dataLimiteAtendimento) {
+		this.dataLimiteAtendimento = dataLimiteAtendimento;
 	}
 
 	public Date getDataAgendamento() {
@@ -151,7 +151,7 @@ public class OSImpl implements OS{
 		return "OS [id=" + id + ", dataHoraChamado=" + dataHoraChamado
 				+ ", descricaoDemanda=" + descricaoDemanda
 				+ ", sugestaoSolucao=" + sugestaoSolucao
-				+ ", dataLimiteAgendamento=" + dataLimiteAgendamento
+				+ ", dataLimiteAtendimento=" + dataLimiteAtendimento
 				+ ", dataAgendamento=" + dataAgendamento + ", cliente="
 				+ cliente + ", categoriaDemanda=" + categoriaDemanda
 				+ ", tipoOs=" + tipoOs + ", tecResponsavel=" + tecResponsavel

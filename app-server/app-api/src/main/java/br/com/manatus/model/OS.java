@@ -11,8 +11,8 @@ public interface OS {
 	public void setDescricaoDemanda(String descricaoDemanda);
 	public String getSugestaoSolucao();
 	public void setSugestaoSolucao(String sugestaoSolucao);
-	public Date getDataLimiteAgendamento();
-	public void setDataLimiteAgendamento(Date dataLimiteAgendamento);
+	public Date getDataLimiteAtendimento();
+	public void setDataLimiteAtendimento(Date dataLimiteAtendimento);
 	public Date getDataAgendamento();
 	public void setDataAgendamento(Date dataAgendamento);
 	public Cliente getCliente();
