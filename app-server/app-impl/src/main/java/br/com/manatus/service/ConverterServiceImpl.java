@@ -32,7 +32,7 @@ public class ConverterServiceImpl implements ConverterService{
 			CategoriaDemanda cd = null;
 			TipoOS tipoOs = null;
 			
-			if(dto.getCliente().getId() != null) {
+			if(dto.getCliente() != null) {
 				cliente = osDao.find(Cliente.class, dto.getCliente().getId());
 				
 				if(cliente == null) {
@@ -40,7 +40,7 @@ public class ConverterServiceImpl implements ConverterService{
 				}
 			}
 			
-			if(dto.getTecResponsavel().getId() != null) {
+			if(dto.getTecResponsavel() != null) {
 				tecResponsavel = osDao.find(Funcionario.class, dto.getTecResponsavel().getId());
 				
 				if(tecResponsavel == null) {
@@ -48,7 +48,7 @@ public class ConverterServiceImpl implements ConverterService{
 				}
 			}
 			
-			if(dto.getTecAgendamento().getId() != null) {
+			if(dto.getTecAgendamento() != null) {
 				tecAgendamento = osDao.find(Funcionario.class, dto.getTecAgendamento().getId());
 				
 				if(tecAgendamento == null) {
@@ -56,7 +56,7 @@ public class ConverterServiceImpl implements ConverterService{
 				}
 			}
 			
-			if(dto.getCategoriaDemanda().getId() != null) {
+			if(dto.getCategoriaDemanda() != null) {
 				cd = osDao.find(CategoriaDemanda.class, dto.getCategoriaDemanda().getId());
 				
 				if(cd == null) {
@@ -64,7 +64,7 @@ public class ConverterServiceImpl implements ConverterService{
 				}
 			}
 			
-			if(dto.getTipoOs().getId() != null) {
+			if(dto.getTipoOs() != null) {
 				tipoOs = osDao.find(TipoOS.class, dto.getTipoOs().getId());
 				
 				if(tipoOs == null) {
