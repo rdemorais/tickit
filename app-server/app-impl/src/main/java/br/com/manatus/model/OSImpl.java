@@ -1,14 +1,18 @@
 package br.com.manatus.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -40,6 +44,9 @@ public class OSImpl extends AbstractAuditavel implements OS{
 	@Column(name="dt_agendamento")
 	private Date dataAgendamento;
 	
+	@Column(name="dt_conclusao")
+	private Date dataConclusao;
+	
 	@OneToOne(cascade = CascadeType.REFRESH, targetEntity=ClienteImpl.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="co_cliente")
 	private Cliente cliente;
@@ -59,6 +66,13 @@ public class OSImpl extends AbstractAuditavel implements OS{
 	@OneToOne(cascade = CascadeType.REFRESH, targetEntity=FuncionarioImpl.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="co_tecnico_agendamento", unique=false)
 	private Funcionario tecAgendamento;
+	
+	@Column(name="ds_status_os")
+	@Enumerated(EnumType.STRING)
+	private StatusOS statusOs;
+	
+	@OneToMany(targetEntity=IntervencaoImpl.class, cascade=CascadeType.REFRESH, fetch=FetchType.LAZY, mappedBy="os")
+	private Collection<Intervencao> intervencoes;
 
 	public Long getId() {
 		return id;
@@ -146,6 +160,30 @@ public class OSImpl extends AbstractAuditavel implements OS{
 
 	public void setTecAgendamento(Funcionario tecAgendamento) {
 		this.tecAgendamento = tecAgendamento;
+	}
+	
+	public StatusOS getStatusOs() {
+		return statusOs;
+	}
+
+	public void setStatusOs(StatusOS statusOs) {
+		this.statusOs = statusOs;
+	}
+	
+	public Date getDataConclusao() {
+		return dataConclusao;
+	}
+
+	public void setDataConclusao(Date dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+	
+	public Collection<Intervencao> getIntervencoes() {
+		return intervencoes;
+	}
+
+	public void setIntervencoes(Collection<Intervencao> intervencoes) {
+		this.intervencoes = intervencoes;
 	}
 
 	@Override

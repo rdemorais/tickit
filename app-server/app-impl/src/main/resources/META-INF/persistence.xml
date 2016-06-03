@@ -15,12 +15,14 @@
         
         <class>br.com.manatus.model.CargoImpl</class>
         <class>br.com.manatus.model.CategoriaDemandaImpl</class>
+        <class>br.com.manatus.model.DemandaImpl</class>
         <class>br.com.manatus.model.PessoaImpl</class>
         <class>br.com.manatus.model.ClienteImpl</class>
         <class>br.com.manatus.model.TipoOSImpl</class>
         <class>br.com.manatus.model.VeiculoImpl</class>
         <class>br.com.manatus.model.FuncionarioImpl</class>
         <class>br.com.manatus.model.OSImpl</class>
+        <class>br.com.manatus.model.IntervencaoImpl</class>
         <exclude-unlisted-classes/>
          
         <properties>

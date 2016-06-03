@@ -19,7 +19,9 @@ import br.com.akula.impl.model.UsuarioImpl;
 import br.com.manatus.model.CargoImpl;
 import br.com.manatus.model.CategoriaDemandaImpl;
 import br.com.manatus.model.ClienteImpl;
+import br.com.manatus.model.DemandaImpl;
 import br.com.manatus.model.FuncionarioImpl;
+import br.com.manatus.model.IntervencaoImpl;
 import br.com.manatus.model.OSImpl;
 import br.com.manatus.model.PessoaImpl;
 import br.com.manatus.model.TipoOSImpl;
@@ -101,7 +103,9 @@ public class SchemaTranslator {
 				TipoOSImpl.class,
 				VeiculoImpl.class,
 				FuncionarioImpl.class,
-				OSImpl.class};
+				OSImpl.class,
+				DemandaImpl.class,
+				IntervencaoImpl.class};
 
 		translator.setDialect("org.hibernate.dialect.PostgreSQLDialect")
 		.addAnnotatedClasses(entiClassesMA)

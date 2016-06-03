@@ -1,7 +1,10 @@
 package br.com.manatus.service;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -14,13 +17,17 @@ import br.com.manatus.service.dto.TipoOSDto;
 
 @ContextConfiguration("/META-INF/tickitTest-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
+@FixMethodOrder
 public class OSServiceTest {
+	
+	private static final Logger logger = LoggerFactory.getLogger(OSServiceTest.class);
 	
 	@Autowired
 	private OSService osService;
 	
 	@Test
 	public void testManterOS() throws AkulaRuntimeException{
+		logger.debug("testManterOS");
 		OSDto osDto = new OSDto();
 		PessoaDto cliente = new PessoaDto();
 		PessoaDto fun1 = new PessoaDto();
@@ -48,5 +55,11 @@ public class OSServiceTest {
 		osDto.setTipoOs(tipoOs);
 		
 		osService.manterOS(osDto);
+	}
+	
+	@Test
+	public void testIncluirIntervencao() {
+		logger.debug("testIncluirIntervencao");
+		
 	}
 }

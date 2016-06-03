@@ -1,9 +1,14 @@
 package br.com.manatus.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +24,9 @@ public class CategoriaDemandaImpl implements CategoriaDemanda{
 	
 	@Column(name="no_categoria")
 	private String categoriaDemanda;
+	
+	@OneToMany(targetEntity=DemandaImpl.class, cascade=CascadeType.REMOVE, fetch=FetchType.LAZY, mappedBy="categoriaDemanda")
+	private Collection<Demanda> demandas;
 
 	public Long getId() {
 		return id;
@@ -34,5 +42,13 @@ public class CategoriaDemandaImpl implements CategoriaDemanda{
 
 	public void setCategoriaDemanda(String categoriaDemanda) {
 		this.categoriaDemanda = categoriaDemanda;
+	}
+
+	public Collection<Demanda> getDemandas() {
+		return demandas;
+	}
+
+	public void setDemandas(Collection<Demanda> demandas) {
+		this.demandas = demandas;
 	}
 }

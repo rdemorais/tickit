@@ -1,5 +1,6 @@
 package br.com.manatus.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import br.com.akula.api.model.Auditavel;
@@ -9,6 +10,8 @@ public interface OS extends Auditavel{
 	public void setId(Long id);
 	public Date getDataHoraChamado();
 	public void setDataHoraChamado(Date dataHoraChamado);
+	public Date getDataConclusao();
+	public void setDataConclusao(Date dataConclusao);
 	public String getDescricaoDemanda();
 	public void setDescricaoDemanda(String descricaoDemanda);
 	public String getSugestaoSolucao();
@@ -27,4 +30,8 @@ public interface OS extends Auditavel{
 	public void setTecResponsavel(Funcionario tecResponsavel);
 	public Funcionario getTecAgendamento();
 	public void setTecAgendamento(Funcionario tecAgendamento);
+	public StatusOS getStatusOs();
+	public void setStatusOs(StatusOS statusOs);
+	public Collection<Intervencao> getIntervencoes();
+	public void setIntervencoes(Collection<Intervencao> intervencoes);
 }

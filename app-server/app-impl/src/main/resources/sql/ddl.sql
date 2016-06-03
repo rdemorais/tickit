@@ -1,4 +1,5 @@
 
+
     create table tb_cargo (
         co_cargo int8 not null,
         no_cargo varchar(255),
@@ -16,6 +17,12 @@
         co_pessoa int8 not null,
         primary key (co_pessoa)
     );
+    create table tb_demanda (
+        co_demanda int8 not null,
+        ds_demanda varchar(255),
+        co_categoria_demanda int8,
+        primary key (co_demanda)
+    );
     create table tb_funcionario (
         ds_area_atuacao varchar(255),
         ds_habilidade varchar(255),
@@ -32,15 +39,29 @@
         ds_nome varchar(255),
         primary key (co_grupo)
     );
+    create table tb_intervencao (
+        co_intervencao int8 not null,
+        dt_fim_intervencao timestamp,
+        dt_intervencao timestamp,
+        ds_obs TEXT,
+        co_cliente_destino int8,
+        co_cliente_origem int8,
+        co_demanda int8,
+        co_os int8,
+        co_tecnico_responsavel int8,
+        primary key (co_intervencao)
+    );
     create table tb_os (
         co_os int8 not null,
         dt_delete timestamp,
         dt_insert timestamp,
         dt_update timestamp,
         dt_agendamento timestamp,
+        dt_conclusao timestamp,
         dt_chamado timestamp,
         dt_limite_atendimento timestamp,
         ds_demanda TEXT,
+        ds_status_os varchar(255),
         ds_solucao TEXT,
         co_usuario_delete int8,
         co_usuario_insert int8,
@@ -126,6 +147,8 @@
         ds_modelo varchar(255),
         primary key (co_veiculo)
     );
+    alter table tb_intervencao 
+        add constraint UK_rl89035mbtvgbilv9d2v09kxt  unique (co_os);
     alter table tb_permissao_seg 
         add constraint UK_2dbav7bxbxlfmmiml9nftg3l6  unique (ds_nome);
     alter table tb_usuario_seg 
@@ -134,6 +157,10 @@
         add constraint FK_efh3jnvvfq7fik9rtbgsiuwld 
         foreign key (co_pessoa) 
         references tb_pessoa;
+    alter table tb_demanda 
+        add constraint FK_gmsntlh2c3c3w7c3apmh7a8hq 
+        foreign key (co_categoria_demanda) 
+        references tb_categoria_demanda;
     alter table tb_funcionario 
         add constraint FK_nmwflnpnhlul51h0icjtn9ttr 
         foreign key (co_cargo) 
@@ -146,6 +173,26 @@
         add constraint FK_rmaij0ms9v7wfkbusivr1wj3r 
         foreign key (co_pessoa) 
         references tb_pessoa;
+    alter table tb_intervencao 
+        add constraint FK_lttyimyoxhu6ix998d5766ex6 
+        foreign key (co_cliente_destino) 
+        references tb_cliente;
+    alter table tb_intervencao 
+        add constraint FK_jwmd7gbres5j0ku4ukc4gtc7g 
+        foreign key (co_cliente_origem) 
+        references tb_cliente;
+    alter table tb_intervencao 
+        add constraint FK_munlrhup2dn2yig2wh1jq10n3 
+        foreign key (co_demanda) 
+        references tb_demanda;
+    alter table tb_intervencao 
+        add constraint FK_rl89035mbtvgbilv9d2v09kxt 
+        foreign key (co_os) 
+        references tb_os;
+    alter table tb_intervencao 
+        add constraint FK_b28kx9few7gcr0tranxfiwg88 
+        foreign key (co_tecnico_responsavel) 
+        references tb_funcionario;
     alter table tb_os 
         add constraint FK_44cp1gkfkgpu9di189kda8xdu 
         foreign key (co_usuario_delete) 
@@ -222,6 +269,8 @@
     create sequence sentinela_usuario_seq;
     create sequence tickit_cargo_seq;
     create sequence tickit_categoria_demanda_seq;
+    create sequence tickit_demanda_seq;
+    create sequence tickit_intervencao_seq;
     create sequence tickit_os_seq;
     create sequence tickit_pessoa_seq;
     create sequence tickit_tipo_os_seq;
