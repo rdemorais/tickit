@@ -9,8 +9,10 @@ import br.com.akula.api.model.EventoAuditoria;
 import br.com.akula.api.service.SentinelaService;
 import br.com.manatus.dao.OSDao;
 import br.com.manatus.exc.AkulaRuntimeException;
+import br.com.manatus.model.Intervencao;
 import br.com.manatus.model.OS;
 import br.com.manatus.model.OSImpl;
+import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 
 public class OSServiceImpl implements OSService{
@@ -41,16 +43,15 @@ public class OSServiceImpl implements OSService{
 		
 		converterService.convertOS(os, dto);
 		
-		switch (evAud) {
-		case INSERT:
-			osDao.create(os);
-			break;
-		case UPDATE:
-			osDao.merge(os);
-		default:
-			break;
-		}
+		osDao.merge(os);
 		
 		//sentinelaAuditoriaEventPublisher.notificar(sentinelaService.usuarioLogado(), os, evAud);
+	}
+	
+	@Transactional
+	public void manterIntervencao(IntervencaoDto dto) throws AkulaRuntimeException {
+		Intervencao inter = converterService.convertIntervencao(dto);
+		
+		osDao.merge(inter);
 	}
 }

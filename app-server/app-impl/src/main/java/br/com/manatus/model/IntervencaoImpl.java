@@ -30,7 +30,7 @@ public class IntervencaoImpl implements Intervencao{
 	private Date dataHoraFimIntervencao;
 	
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=OSImpl.class, fetch = FetchType.LAZY)
-	@JoinColumn(name="co_os", unique=true)
+	@JoinColumn(name="co_os", unique=false)
 	private OS os;
 	
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=DemandaImpl.class, fetch = FetchType.LAZY)

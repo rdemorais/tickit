@@ -1,5 +1,4 @@
 
-
     create table tb_cargo (
         co_cargo int8 not null,
         no_cargo varchar(255),
@@ -147,8 +146,6 @@
         ds_modelo varchar(255),
         primary key (co_veiculo)
     );
-    alter table tb_intervencao 
-        add constraint UK_rl89035mbtvgbilv9d2v09kxt  unique (co_os);
     alter table tb_permissao_seg 
         add constraint UK_2dbav7bxbxlfmmiml9nftg3l6  unique (ds_nome);
     alter table tb_usuario_seg 

@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
+import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
 import br.com.manatus.service.dto.TipoOSDto;
@@ -60,6 +61,24 @@ public class OSServiceTest {
 	@Test
 	public void testIncluirIntervencao() {
 		logger.debug("testIncluirIntervencao");
+		OSDto osDto = new OSDto();
+		IntervencaoDto interDto = new IntervencaoDto();
+		PessoaDto clienteOrigem = new PessoaDto();
+		PessoaDto clienteDestino = new PessoaDto();
+		PessoaDto tecResponsavel = new PessoaDto();
 		
+		osDto.setId(1L);
+		clienteOrigem.setId(4L);
+		clienteDestino.setId(4L);
+		tecResponsavel.setId(2L);
+		
+		interDto.setObservacao("observação da intervenção");
+		interDto.setDataHoraIntervencao("12/03/2004 14:43");
+		interDto.setClienteOrigem(clienteOrigem);
+		interDto.setClienteDestino(clienteDestino);
+		interDto.setTecResponsavel(tecResponsavel);
+		interDto.setOs(osDto);
+		
+		osService.manterIntervencao(interDto);
 	}
 }

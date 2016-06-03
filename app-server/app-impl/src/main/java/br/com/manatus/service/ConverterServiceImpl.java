@@ -10,14 +10,18 @@ import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.exc.AkulaServiceRuntimeException;
 import br.com.manatus.model.CategoriaDemanda;
 import br.com.manatus.model.Cliente;
+import br.com.manatus.model.Demanda;
 import br.com.manatus.model.Funcionario;
+import br.com.manatus.model.Intervencao;
+import br.com.manatus.model.IntervencaoImpl;
 import br.com.manatus.model.OS;
 import br.com.manatus.model.TipoOS;
+import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 
 public class ConverterServiceImpl implements ConverterService{
 
-	private SimpleDateFormat sdf;
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	
 	@Autowired
 	private OSDao osDao;
@@ -25,7 +29,6 @@ public class ConverterServiceImpl implements ConverterService{
 	@Override
 	public void convertOS(OS os, OSDto dto) throws AkulaRuntimeException {
 		try {
-			sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			Cliente cliente = null;
 			Funcionario tecResponsavel = null;
 			Funcionario tecAgendamento = null;
@@ -88,6 +91,77 @@ public class ConverterServiceImpl implements ConverterService{
 			
 		} catch (ParseException e) {
 			throw new AkulaServiceRuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public Intervencao convertIntervencao(IntervencaoDto dto) throws AkulaRuntimeException {
+		try {
+			Intervencao inter = null;
+			Demanda demanda = null;
+			Funcionario tecResponsavel = null;
+			Cliente clienteOrigem = null;
+			Cliente clienteDestino = null;
+			OS os = null;
+			
+			if(dto.getId() != null) {
+				inter = osDao.find(Intervencao.class, dto.getId());
+			}else {
+				inter = new IntervencaoImpl();
+			}
+			
+			if(dto.getDemanda() != null) {
+				demanda = osDao.find(Demanda.class, dto.getDemanda().getId());
+				
+				if(demanda == null) {
+					throw new AkulaServiceRuntimeException("Demanda nao encontrada na base com ID: [" + dto.getDemanda().getId() + "]");
+				}
+			}
+			
+			if(dto.getTecResponsavel() != null) {
+				tecResponsavel = osDao.find(Funcionario.class, dto.getTecResponsavel().getId());
+				
+				if(tecResponsavel == null) {
+					throw new AkulaServiceRuntimeException("Tecnico Responsavel nao encontrado na base com ID: [" + dto.getTecResponsavel().getId() + "]");
+				}
+			}
+			
+			if(dto.getClienteOrigem() != null) {
+				clienteOrigem = osDao.find(Cliente.class, dto.getClienteOrigem().getId());
+				
+				if(clienteOrigem == null) {
+					throw new AkulaServiceRuntimeException("Cliente de origem nao encontrado na base com ID: [" + dto.getClienteOrigem().getId() + "]");
+				}
+			}
+			
+			if(dto.getClienteDestino() != null) {
+				clienteDestino = osDao.find(Cliente.class, dto.getClienteDestino().getId());
+				
+				if(clienteDestino == null) {
+					throw new AkulaServiceRuntimeException("Cliente de destino nao encontrado na base com ID: [" + dto.getClienteDestino().getId() + "]");
+				}
+			}
+			
+			if(dto.getOs() != null) {
+				os = osDao.find(OS.class, dto.getOs().getId());
+				
+				if(os == null) {
+					throw new AkulaServiceRuntimeException("OS obrigatoria nao encontrada com ID: [" + dto.getOs().getId() + "]");
+				}
+			}
+			
+			inter.setObservacao(dto.getObservacao());
+			inter.setDataHoraIntervencao(sdf.parse(dto.getDataHoraIntervencao()));
+			if(dto.getDataHoraFimIntervencao() != null) {
+				inter.setDataHoraFimIntervencao(sdf.parse(dto.getDataHoraFimIntervencao()));
+			}
+			inter.setOs(os);
+			inter.setTecResponsavel(tecResponsavel);
+			inter.setClienteOrigem(clienteOrigem);
+			inter.setClienteDestino(clienteDestino);
+			
+			return inter;
+		} catch (ParseException e) {
+			throw new AkulaServiceRuntimeException(e.getMessage());
 		}
 	}
 }
