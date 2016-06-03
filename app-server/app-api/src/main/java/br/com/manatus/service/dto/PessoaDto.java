@@ -27,6 +27,21 @@ public class PessoaDto {
 	private String inscricaoEstadual;
 	private String tipoCliente;
 	
+	public PessoaDto() {
+		
+	}
+	
+	/**
+	 * Construtor usado para carregar listas de clientes e tecnicos
+	 * 
+	 * @param id
+	 * @param nome
+	 */
+	public PessoaDto(Long id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -152,5 +167,15 @@ public class PessoaDto {
 	}
 	public void setTipoCliente(String tipoCliente) {
 		this.tipoCliente = tipoCliente;
+	}
+
+	@Override
+	public String toString() {
+		return "PessoaDto [id=" + id + ", nome=" + nome + ", datNascimento=" + datNascimento + ", cpfCnpj=" + cpfCnpj
+				+ ", genero=" + genero + ", comentario=" + comentario + ", website=" + website + ", facebook="
+				+ facebook + ", twitter=" + twitter + ", autoRegistro=" + autoRegistro + ", email=" + email + ", senha="
+				+ senha + ", salario=" + salario + ", cargo=" + cargo + ", veiculo=" + veiculo + ", habilidade="
+				+ habilidade + ", areaAtuacao=" + areaAtuacao + ", razaoSocial=" + razaoSocial + ", inscricaoEstadual="
+				+ inscricaoEstadual + ", tipoCliente=" + tipoCliente + "]";
 	}
 }

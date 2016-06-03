@@ -1,5 +1,7 @@
 package br.com.manatus.service;
 
+import java.util.List;
+
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
+import br.com.manatus.service.dto.DemandaDto;
 import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
@@ -80,5 +83,60 @@ public class OSServiceTest {
 		interDto.setOs(osDto);
 		
 		osService.manterIntervencao(interDto);
+	}
+	
+	@Test
+	public void testListClientes() {
+		logger.debug("testListClientes");
+		
+		List<PessoaDto> clientes = osService.listClientes();
+		
+		for (PessoaDto pessoaDto : clientes) {
+			logger.debug(pessoaDto.toString());
+		}
+	}
+	
+	@Test
+	public void testListFuncionarios() {
+		logger.debug("testListFuncionarios");
+		
+		List<PessoaDto> funcionarios = osService.listFuncionarios();
+		
+		for (PessoaDto pessoaDto : funcionarios) {
+			logger.debug(pessoaDto.toString());
+		}
+	}
+	
+	@Test
+	public void testListTipoOs() {
+		logger.debug("testListTipoOs");
+		
+		List<TipoOSDto> tipoOss = osService.listTipoOs();
+		
+		for (TipoOSDto tipoOSDto : tipoOss) {
+			logger.debug(tipoOSDto.toString());
+		}
+	}
+	
+	@Test
+	public void testListCategoriaDemanda() {
+		logger.debug("testListCategoriaDemanda");
+		
+		List<CategoriaDemandaDto> cds = osService.listCategoriaDemanda();
+		
+		for (CategoriaDemandaDto categoriaDemandaDto : cds) {
+			logger.debug(categoriaDemandaDto.toString());
+		}
+	}
+	
+	@Test
+	public void testListDemanda() {
+		logger.debug("listDemanda");
+		
+		List<DemandaDto> demandas = osService.listDemanda();
+		
+		for (DemandaDto demandaDto : demandas) {
+			logger.debug(demandaDto.toString());
+		}
 	}
 }

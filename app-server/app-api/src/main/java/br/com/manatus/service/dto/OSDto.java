@@ -12,6 +12,7 @@ public class OSDto {
 	private PessoaDto cliente;
 	private PessoaDto tecResponsavel;
 	private PessoaDto tecAgendamento;
+	
 	public Long getId() {
 		return id;
 	}
