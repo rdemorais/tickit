@@ -1,0 +1,17 @@
+// START Sidebar
+.sidebar-wrapper
+  .sidebar(ui-sidebar="")
+    .sidebar-nav
+        ul.nav
+          // Iterates over all sidebar items
+          li(ng-class="{active:$state.includes('app.dashboard')}")
+            a(ui-sref='app.dashboard', title='Dashboard', ripple='')
+              em.sidebar-item-icon.icon-pie-graph
+              em.sidebar-item-caret.fa.pull-right.fa-angle-right
+              span Dashboard
+          li(ng-class="{active:$state.includes('app.os.main')}")
+            a(ui-sref='app.os-main', title='OS', ripple='')
+              em.sidebar-item-icon.icon-layout
+              em.sidebar-item-caret.fa.pull-right.fa-angle-right
+              span OS
+// END Sidebar

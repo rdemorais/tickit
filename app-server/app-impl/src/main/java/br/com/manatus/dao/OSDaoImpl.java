@@ -2,6 +2,7 @@ package br.com.manatus.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import br.com.manatus.exc.AkulaRuntimeException;
@@ -12,14 +13,41 @@ import br.com.manatus.service.dto.TipoOSDto;
 
 public class OSDaoImpl extends DaoImpl implements OSDao{
 	
+	public PessoaDto loadPessoa(String email) throws AkulaRuntimeException {
+		try {
+			StringBuffer hql = new StringBuffer();
+			
+			hql.append("SELECT new br.com.manatus.service.dto.PessoaDto(");
+			hql.append("f.id, ");
+			hql.append("f.nome, ");
+			hql.append("user.login) ");
+			hql.append("FROM Funcionario f ");
+			hql.append("JOIN f.usuario user ");
+			hql.append("WHERE user.login = :email ");
+			
+			Query q = em.createQuery(hql.toString());
+			q.setParameter("email", email);
+			
+			return (PessoaDto) q.getSingleResult();
+			
+		} catch (NoResultException e) {
+			return null;
+		} catch (Exception e) {
+			throw new AkulaRuntimeException(e.getMessage(), e);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<PessoaDto> listClientes() throws AkulaRuntimeException {
 		StringBuffer hql = new StringBuffer();
 		
 		hql.append("SELECT new br.com.manatus.service.dto.PessoaDto(");
 		hql.append("c.id, ");
-		hql.append("c.nome) ");
+		hql.append("c.nome, ");
+		hql.append("user.login, ");
+		hql.append("c.tipoCliente) ");
 		hql.append("FROM Cliente c ");
+		hql.append("JOIN c.usuario user ");
 		
 		Query q = em.createQuery(hql.toString());
 		return q.getResultList();

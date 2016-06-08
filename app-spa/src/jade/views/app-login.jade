@@ -1,0 +1,10 @@
+// top navbar
+header(ng-include="'app/views/cached/top-navbar.html'", ng-class="app.theme.topbar")
+
+// Main
+section
+  // Content
+  .app(ui-view="", autoscroll="false", ng-class="app.views.animation")
+  
+// Page footer
+footer(ng-include="'app/views/cached/footer.html'")

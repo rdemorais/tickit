@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.akula.api.auditoria.SentinelaAuditoriaEventPublisher;
 import br.com.akula.api.model.EventoAuditoria;
+import br.com.akula.api.model.Usuario;
 import br.com.akula.api.service.SentinelaService;
 import br.com.manatus.dao.OSDao;
 import br.com.manatus.exc.AkulaRuntimeException;
@@ -33,7 +34,15 @@ public class OSServiceImpl implements OSService{
 	private SentinelaAuditoriaEventPublisher sentinelaAuditoriaEventPublisher;
 	
 	@Autowired
-	private SentinelaService sentinelaService;
+	private SentinelaService oauth2SentinelaService;
+	
+	@Transactional
+	public PessoaDto getUsuarioLogado() throws AkulaRuntimeException {
+		Usuario user = oauth2SentinelaService.usuarioLogado();
+		PessoaDto usuarioLogado = osDao.loadPessoa(user.getLogin());
+		return usuarioLogado;
+	}
+	
 	
 	@Transactional
 	public void manterOS(OSDto dto) throws AkulaRuntimeException {
@@ -50,8 +59,8 @@ public class OSServiceImpl implements OSService{
 		converterService.convertOS(os, dto);
 		
 		osDao.merge(os);
-		
-		//sentinelaAuditoriaEventPublisher.notificar(sentinelaService.usuarioLogado(), os, evAud);
+
+		sentinelaAuditoriaEventPublisher.notificar(oauth2SentinelaService.usuarioLogado(), os, evAud);
 	}
 	
 	@Transactional

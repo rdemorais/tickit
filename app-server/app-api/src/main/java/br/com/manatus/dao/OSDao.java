@@ -9,6 +9,7 @@ import br.com.manatus.service.dto.PessoaDto;
 import br.com.manatus.service.dto.TipoOSDto;
 
 public interface OSDao extends Dao{
+	public PessoaDto loadPessoa(String email) throws AkulaRuntimeException;
 	public List<PessoaDto> listClientes() throws AkulaRuntimeException;
 	public List<PessoaDto> listFuncionarios() throws AkulaRuntimeException;
 	public List<TipoOSDto> listTipoOs() throws AkulaRuntimeException;

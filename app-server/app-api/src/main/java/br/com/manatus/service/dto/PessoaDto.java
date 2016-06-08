@@ -1,5 +1,7 @@
 package br.com.manatus.service.dto;
 
+import br.com.manatus.model.TipoCliente;
+
 public class PessoaDto {
 	private Long id;
 	private String avatar;
@@ -32,7 +34,7 @@ public class PessoaDto {
 	}
 	
 	/**
-	 * Construtor usado para carregar listas de clientes e tecnicos
+	 * Construtor usado para carregar listas de tecnicos
 	 * 
 	 * @param id
 	 * @param nome
@@ -40,6 +42,19 @@ public class PessoaDto {
 	public PessoaDto(Long id, String nome) {
 		this.id = id;
 		this.nome = nome;
+	}
+	
+	public PessoaDto(Long id, String nome, String email) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+	}
+	
+	public PessoaDto(Long id, String nome, String email, TipoCliente tipoCliente) {
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.tipoCliente = tipoCliente.name();
 	}
 	
 	public Long getId() {

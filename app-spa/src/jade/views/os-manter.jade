@@ -1,0 +1,82 @@
+.container-fluid
+	.row
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading
+					.pull-right.small.text-muted Técnico do Agendamento: {{data.os.tecAgendamento.nome}}
+					|Abertura de Ordem de Serviço
+				.panel-body
+					.col-lg-8
+						form.form-horizontal(novalidate="")
+							fieldset
+								.form-group
+									label.col-sm-3.control-label Cliente
+									.col-sm-8
+										ui-select(ng-model='data.os.cliente', theme='bootstrap')
+											ui-select-match(placeholder='Selecione ou pesquise o cliente') {{$select.selected.nome}}
+											ui-select-choices(repeat='cli in data.listaClientes | propsFilter: {nome: $select.search, email: $select.search}')
+												div(ng-bind-html='cli.nome | highlight: $select.search')
+												small
+													|eMail: 
+													span(ng-bind-html="''+cli.email | highlight: $select.search")
+													|&nbsp; Natureza: 
+													span(ng-bind-html="''+cli.tipoCliente | highlight: $select.search")
+							fieldset
+								.form-group
+									label.col-sm-3.control-label Data e Hora do Chamado
+									.col-sm-5
+										p.input-group
+											input.form-control(ng-model="data.os.dataHoraChamado", date-time, format="DD/MM/YYYY HH:mm", locale="pt_br")
+											span.input-group-btn
+												button.btn.btn-default(type='button')
+													em.fa.fa-calendar
+							fieldset
+								.form-group
+									label.col-sm-3.control-label Categoria da Demanda
+									.col-sm-7
+										ui-select(ng-model='data.os.categoriaDemanda', theme='bootstrap')
+											ui-select-match(placeholder='Selecione ou pesquise a categoria') {{$select.selected.categoriaDemanda}}
+											ui-select-choices(repeat='dem in data.listaCategoriaDemanda | propsFilter: {categoriaDemanda: $select.search}')
+												div(ng-bind-html='dem.categoriaDemanda | highlight: $select.search')
+							fieldset
+								.form-group
+									label.col-sm-3.control-label Descrição da Demanda
+									.col-sm-9
+										textArea(froala-ng, ng-model="data.os.descricaoDemanda", language="pt_br",
+											 toolbar-buttons="['bold', 'italic', 'underline', 'align', 'insertLink', 'insertTable', 'quote']")
+							fieldset
+								.form-group
+									label.col-sm-3.control-label Sugestão para atendimento
+									.col-sm-9
+										textArea(froala-ng, ng-model="data.os.sugestaoSolucao", language="pt_br",
+											 toolbar-buttons="['bold', 'italic', 'underline', 'align', 'insertLink', 'insertTable', 'quote']")
+					.col-lg-4
+							form.form-vertical(novalidate="")
+								.form-group
+									label.control-label Tipo OS
+									ui-select(ng-model='data.os.tipoOs', theme='bootstrap')
+										ui-select-match(placeholder='Selecione ou pesquise o tipo de Os') {{$select.selected.tipoOs}}
+										ui-select-choices(repeat='tOs in data.listaTipoOs | propsFilter: {tipoOs: $select.search}')
+											div(ng-bind-html='tOs.tipoOs | highlight: $select.search')
+								.form-group
+									label.control-label Data do Agendamento
+									p.input-group
+										input.form-control(ng-model="data.os.dataAgendamento", date-time, format="DD/MM/YYYY HH:mm")
+										span.input-group-btn
+											button.btn.btn-default(type='button')
+												em.fa.fa-calendar
+								.form-group
+									label.control-label Data limite de atendimento
+									p.input-group
+										input.form-control(ng-model="data.os.dataLimiteAtendimento", date-time, format="DD/MM/YYYY HH:mm")
+										span.input-group-btn
+											button.btn.btn-default(type='button')
+												em.fa.fa-calendar
+								.form-group
+									label.control-label Técnico designado
+									ui-select(ng-model='data.os.tecResponsavel', theme='bootstrap')
+										ui-select-match(placeholder='Selecione ou pesquise o técnico') {{$select.selected.nome}}
+										ui-select-choices(repeat='cli in data.listaTecnicos | propsFilter: {nome: $select.search}')
+											div(ng-bind-html='cli.nome | highlight: $select.search')
+								.form-group
+									button.btn.btn-success(ng-click="cadastrarOs()") Cadastrar OS

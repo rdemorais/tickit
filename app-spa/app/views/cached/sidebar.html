@@ -1,0 +1,25 @@
+<!-- START Sidebar-->
+<div class="sidebar-wrapper">
+   <div ui-sidebar="" class="sidebar">
+      <div class="sidebar-nav">
+         <ul class="nav">
+            <!-- Iterates over all sidebar items-->
+            <li ng-class="{active:$state.includes('app.dashboard')}">
+               <a ui-sref="app.dashboard" title="Dashboard" ripple="">
+                  <em class="sidebar-item-icon icon-pie-graph"></em>
+                  <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+                  <span>Dashboard</span>
+               </a>
+            </li>
+            <li ng-class="{active:$state.includes('app.os.main')}">
+               <a ui-sref="app.os-main" title="OS" ripple="">
+                  <em class="sidebar-item-icon icon-layout"></em>
+                  <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+                  <span>OS</span>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
+</div>
+<!-- END Sidebar-->

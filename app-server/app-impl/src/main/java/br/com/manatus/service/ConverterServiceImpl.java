@@ -20,8 +20,9 @@ import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 
 public class ConverterServiceImpl implements ConverterService{
-
-	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	
+	//2016-06-08T01:18:15.824Z
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 	
 	@Autowired
 	private OSDao osDao;

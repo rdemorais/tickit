@@ -13,8 +13,8 @@
 	<beans:bean id="sentinelaAuthenticationProvider" class="br.com.akula.impl.auth.SentinelaAuthenticationProvider"/>
 	
 	<beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
-
-	<authentication-manager alias="authenticationManager" >
+	
+	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="sentinelaAuthenticationProvider"/>
 	</authentication-manager>
 	
@@ -49,12 +49,13 @@
 
 	<!-- This is where we tells spring security what URL should be protected 
 		and what roles have access to them -->
-	<http pattern="/tickit/api/**" create-session="always" entry-point-ref="oauthAuthenticationEntryPoint" 
+	<http pattern="/tk/api/**" create-session="always" entry-point-ref="oauthAuthenticationEntryPoint" 
 		access-decision-manager-ref="accessDecisionManager">
 		<anonymous enabled="false" />
-		<intercept-url pattern="/tickit/api/**" access="hasRole('ROLE_AUTENTICADO')" method="OPTIONS"/>
+		<intercept-url pattern="/tk/api/**" access="hasRole('ROLE_AUTENTICADO')" method="POST"/>
 		<custom-filter ref="resourceServerFilter" before="PRE_AUTH_FILTER" />
 		<access-denied-handler ref="oauthAccessDeniedHandler" />
+		<csrf disabled="true" />
 	</http>
 
 	<beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased"
@@ -104,7 +105,7 @@
 		class="org.springframework.security.oauth2.provider.token.DefaultTokenServices">
 		<beans:property name="tokenStore" ref="tokenStore" />
 		<beans:property name="supportRefreshToken" value="true" />
-		<beans:property name="accessTokenValiditySeconds" value="120" />
+		<beans:property name="accessTokenValiditySeconds" value="28000" />
 		<beans:property name="clientDetailsService" ref="clientDetails" />
 	</beans:bean>
 

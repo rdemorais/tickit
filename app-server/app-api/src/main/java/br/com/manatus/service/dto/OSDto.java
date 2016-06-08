@@ -79,5 +79,11 @@ public class OSDto {
 	public void setTecAgendamento(PessoaDto tecAgendamento) {
 		this.tecAgendamento = tecAgendamento;
 	}
+	@Override
+	public String toString() {
+		return "OSDto [id=" + id + ", dataHoraChamado=" + dataHoraChamado + ", descricaoDemanda=" + descricaoDemanda
+				+ ", sugestaoSolucao=" + sugestaoSolucao + ", dataLimiteAtendimento=" + dataLimiteAtendimento
+				+ ", dataAgendamento=" + dataAgendamento + "]";
+	}
 	
 }

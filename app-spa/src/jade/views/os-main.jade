@@ -1,0 +1,37 @@
+.container-fluid
+	.row
+		.col-lg-12
+			.panel.panel-default
+				.panel-body
+					tabset
+						tab(heading="Todas as OSs")
+							.row
+								.col-lg-3.pull-right
+									.input-group.m-b
+										a(ui-sref="app.os-manter")
+											button.btn.btn-success Nova OS
+								.col-lg-4.pull-right
+									.input-group
+										span.input-group-addon $
+										select.form-control(name='account')
+											option Por data limite de atendimento
+											option Por data de agendamento
+								.col-lg-3
+									button.btn.btn-pill-left.btn-default(type='button') Abertas		
+									button.btn.btn-pill-right.btn-default(type='button') Fechadas	
+						tab(heading='Para mim') 
+							.row
+								.col-lg-3.pull-right
+									.input-group.m-b
+										a(ui-sref="app.os-manter")
+											button.btn.btn-success Nova OS
+								.col-lg-4.pull-right
+									.input-group
+										span.input-group-addon $
+										select.form-control(name='account')
+											option Por data limite de atendimento
+											option Por data de agendamento
+								.col-lg-3
+									button.btn.btn-pill-left.btn-default(type='button') Abertas		
+									button.btn.btn-pill-right.btn-default(type='button') Fechadas							
+						tab(heading='Por mim') Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat , sunt in culpa qui officia deserunt mollit anim id est laborum.

@@ -39,9 +39,9 @@ public class OSServiceTest {
 		CategoriaDemandaDto cd = new CategoriaDemandaDto();
 		TipoOSDto tipoOs = new TipoOSDto();
 		
-		osDto.setDataAgendamento("02/01/1984 14:40");
-		osDto.setDataHoraChamado("03/02/2005 15:50");
-		osDto.setDataLimiteAtendimento("04/03/2006 20:40");
+		osDto.setDataAgendamento("2016-06-08T01:18:15.824Z");
+		osDto.setDataHoraChamado("2016-06-08T01:18:15.824Z");
+		osDto.setDataLimiteAtendimento("2016-06-08T01:18:15.824Z");
 		osDto.setDescricaoDemanda("descrição da solução");
 		osDto.setSugestaoSolucao("sugestão da solução");
 		
@@ -76,7 +76,7 @@ public class OSServiceTest {
 		tecResponsavel.setId(2L);
 		
 		interDto.setObservacao("observação da intervenção");
-		interDto.setDataHoraIntervencao("12/03/2004 14:43");
+		interDto.setDataHoraIntervencao("2016-06-08T01:18:15.824Z");
 		interDto.setClienteOrigem(clienteOrigem);
 		interDto.setClienteDestino(clienteDestino);
 		interDto.setTecResponsavel(tecResponsavel);

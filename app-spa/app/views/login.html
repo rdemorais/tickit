@@ -1,0 +1,29 @@
+<container class="container-sm">
+   <div class="mt-xl">
+      <!-- START panel-->
+      <!--img.center-block.img-rounded(src='app/img/logo-gray.png', alt='Image')-->
+      <div class="col-md-4"></div>
+      <div class="col-md-4 animated fadeInLeft2">
+         <div class="panel">
+            <div class="panel-body">
+               <form role="form" class="mb-lg p">
+                  <div class="row">
+                     <div class="form-group has-feedback mb">
+                        <input type="text" placeholder="Usuário" autocomplete="off" ng-model="login" class="form-control" />
+                        <span class="fa fa-user form-control-feedback text-muted"></span>
+                     </div>
+                     <br/>
+                     <div class="form-group has-feedback">
+                        <input type="password" placeholder="Senha" ng-model="senha" class="form-control" />
+                        <span class="fa fa-lock form-control-feedback text-muted"></span>
+                     </div>
+                     <div class="form-group">
+                        <button type="submit" ng-click="loginTickit()" class="btn btn-block btn-info mb">Entrar</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</container>
