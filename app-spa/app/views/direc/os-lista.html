@@ -1,0 +1,57 @@
+<div class="row">
+   <div class="row">
+      <div class="col-lg-3 pull-right">
+         <div class="input-group m-b">
+            <a ui-sref="app.os-manter">
+               <button class="btn btn-success">Nova OS</button>
+            </a>
+         </div>
+      </div>
+      <div class="col-lg-4 pull-right">
+         <div class="input-group m-b">
+            <span class="input-group-addon">
+               <em class="fa fa-sort-amount-desc"></em>
+            </span>
+            <select class="form-control">
+               <option>Por data limite de atendimento</option>
+               <option>Por data de agendamento</option>
+            </select>
+         </div>
+      </div>
+      <div class="col-lg-3">
+         <button type="button" class="btn btn-pill-left btn-default">Abertas</button>
+         <button type="button" class="btn btn-pill-right btn-default">Fechadas</button>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-lg-12 mt">
+         <hr/>
+         <div class="table-responsive table-striped table-bordered table-hover">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>Ord#</th>
+                     <th>Chamado</th>
+                     <th>Cliente</th>
+                     <th>Data / Hora Abertura</th>
+                     <th>Data limite atendimento</th>
+                     <th>Técnico Designado</th>
+                     <th>Ações</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr ng-repeat="os in data.listaOs">
+                     <td>{{$index + 1}}</td>
+                     <td>{{os.codigoChamado}}</td>
+                     <td>{{os.cliente.nome}}</td>
+                     <td>{{os.dataHoraChamado}}</td>
+                     <td>{{os.dataLimiteAtendimento}}</td>
+                     <td>{{os.tecResponsavel.nome}}</td>
+                     <td>--</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>

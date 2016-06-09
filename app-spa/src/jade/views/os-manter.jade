@@ -27,9 +27,8 @@
 									.col-sm-5
 										p.input-group
 											input.form-control(ng-model="data.os.dataHoraChamado", date-time, format="DD/MM/YYYY HH:mm", locale="pt_br")
-											span.input-group-btn
-												button.btn.btn-default(type='button')
-													em.fa.fa-calendar
+											span.input-group-addon
+												em.fa.fa-calendar
 							fieldset
 								.form-group
 									label.col-sm-3.control-label Categoria da Demanda
@@ -62,15 +61,13 @@
 									label.control-label Data do Agendamento
 									p.input-group
 										input.form-control(ng-model="data.os.dataAgendamento", date-time, format="DD/MM/YYYY HH:mm")
-										span.input-group-btn
-											button.btn.btn-default(type='button')
+										span.input-group-addon
 												em.fa.fa-calendar
 								.form-group
 									label.control-label Data limite de atendimento
 									p.input-group
 										input.form-control(ng-model="data.os.dataLimiteAtendimento", date-time, format="DD/MM/YYYY HH:mm")
-										span.input-group-btn
-											button.btn.btn-default(type='button')
+										span.input-group-addon
 												em.fa.fa-calendar
 								.form-group
 									label.control-label Técnico designado

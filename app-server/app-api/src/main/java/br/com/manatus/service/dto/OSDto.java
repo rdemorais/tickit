@@ -1,7 +1,12 @@
 package br.com.manatus.service.dto;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class OSDto {
 	private Long id;
+	private String codigoChamado;
 	private String dataHoraChamado;
 	private String descricaoDemanda;
 	private String sugestaoSolucao;
@@ -13,12 +18,38 @@ public class OSDto {
 	private PessoaDto tecResponsavel;
 	private PessoaDto tecAgendamento;
 	
+	public OSDto() {
+	
+	}
+	
+	public OSDto(Long id, Date dataHoraChamado, String nomeCliente, Date dataLimiteAtendimento, String nomeTecnico) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Calendar dtAgend = Calendar.getInstance();
+		dtAgend.setTime(dataHoraChamado);
+		
+		this.id = id;
+		this.dataHoraChamado = sdf.format(dataHoraChamado);
+		this.dataLimiteAtendimento = sdf.format(dataLimiteAtendimento);
+		this.cliente = new PessoaDto(1L, nomeCliente);
+		this.tecResponsavel = new PessoaDto(1L, nomeTecnico);
+		this.codigoChamado = id + "/" + dtAgend.get(Calendar.YEAR);
+	}
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getCodigoChamado() {
+		return codigoChamado;
+	}
+
+	public void setCodigoChamado(String codigoChamado) {
+		this.codigoChamado = codigoChamado;
+	}
+
 	public String getDataHoraChamado() {
 		return dataHoraChamado;
 	}

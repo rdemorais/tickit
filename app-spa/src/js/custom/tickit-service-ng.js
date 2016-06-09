@@ -9,6 +9,7 @@
     	listaClientes: '/os/lista-clientes',
     	listaTecnicos: '/os/lista-tecnicos',
     	listaCategoriaDemanda: '/os/lista-categorias-demandas',
+    	listaOs: '/os/lista-os',
     	manterOs: '/os/manter',
     	servers: {
     		dev: {
@@ -51,6 +52,10 @@
     			get: function() { return config.listaCategoriaDemanda; },
         	set: function(value) { config.listaCategoriaDemanda = value; }
     		},
+    		listaOs: {
+					get: function() { return config.listaOs; },
+        	set: function(value) { config.listaOs = value; }
+    		},
     		manterOs: {
     			get: function() { return config.manterOs; },
         	set: function(value) { config.manterOs = value; }
@@ -83,6 +88,10 @@
 
 	    	tickitService.listaCategoriaDemanda = function() {
 	    		return osService.listaCategoriaDemanda();
+	    	};
+
+	    	tickitService.listaOs = function() {
+	    		return osService.listaOs();
 	    	};
 
 	    	tickitService.manterOs = function(os) {
@@ -140,6 +149,15 @@
 
 	    osS.listaCategoriaDemanda = function() {
 	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaCategoriaDemanda, null, headers)
+				  			.then(function(response) {
+				  				return response.data;
+				  			}).catch(function(error) {
+				  				return error;
+				  			});
+	    };
+
+	    osS.listaOs = function() {
+	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaOs, null, headers)
 				  			.then(function(response) {
 				  				return response.data;
 				  			}).catch(function(error) {

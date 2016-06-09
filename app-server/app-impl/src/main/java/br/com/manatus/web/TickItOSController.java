@@ -40,6 +40,18 @@ public class TickItOSController {
 		}
 	}
 	
+	@RequestMapping(value="/lista-os", 
+			method=RequestMethod.POST)
+	@ResponseBody
+	public TickItResponse listOs() {
+		try {
+			return TickItResponse.ok(osService.listOS());
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage(), e);
+			return TickItResponse.error(e.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/manter", 
 			method=RequestMethod.POST)
 	@ResponseBody

@@ -1,0 +1,39 @@
+.row
+	.row
+		.col-lg-3.pull-right
+			.input-group.m-b
+				a(ui-sref="app.os-manter")
+					button.btn.btn-success Nova OS
+		.col-lg-4.pull-right
+			.input-group.m-b
+				span.input-group-addon
+						em.fa.fa-sort-amount-desc
+				select.form-control
+					option Por data limite de atendimento
+					option Por data de agendamento
+		.col-lg-3
+			button.btn.btn-pill-left.btn-default(type='button') Abertas		
+			button.btn.btn-pill-right.btn-default(type='button') Fechadas
+	.row
+		.col-lg-12.mt
+			hr
+			.table-responsive.table-striped.table-bordered.table-hover
+				table.table
+					thead
+						tr
+							th Ord#
+							th Chamado
+							th Cliente
+							th Data / Hora Abertura
+							th Data limite atendimento
+							th Técnico Designado
+							th Ações
+					tbody
+						tr(ng-repeat="os in data.listaOs")
+							td {{$index + 1}}
+							td {{os.codigoChamado}}
+							td {{os.cliente.nome}}
+							td {{os.dataHoraChamado}}
+							td {{os.dataLimiteAtendimento}}
+							td {{os.tecResponsavel.nome}}
+							td --

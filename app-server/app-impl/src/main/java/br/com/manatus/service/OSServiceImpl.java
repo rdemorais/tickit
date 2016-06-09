@@ -37,12 +37,16 @@ public class OSServiceImpl implements OSService{
 	private SentinelaService oauth2SentinelaService;
 	
 	@Transactional
+	public List<OSDto> listOS() throws AkulaRuntimeException {
+		return osDao.listOS();
+	}
+	
+	@Transactional
 	public PessoaDto getUsuarioLogado() throws AkulaRuntimeException {
 		Usuario user = oauth2SentinelaService.usuarioLogado();
 		PessoaDto usuarioLogado = osDao.loadPessoa(user.getLogin());
 		return usuarioLogado;
 	}
-	
 	
 	@Transactional
 	public void manterOS(OSDto dto) throws AkulaRuntimeException {
