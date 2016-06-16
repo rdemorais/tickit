@@ -104,10 +104,21 @@
       // Please note that $modalInstance represents a modal window (instance) dependency.
       // It is not the same as the $modal service used above.
       
-      var ModalInstanceCtrl = function ($scope, $modalInstance, listas, tecAgendamento, os) {
+      var ModalInstanceCtrl = function ($scope, $modalInstance, listas, tecAgendamento, os, tickitService) {
+
+      	var loadListaDemanda = function(cd) {
+      		tickitService.listaDemanda(cd).then(function(tkResponse) {
+      			if(tkResponse.status = 'success') {
+      				$scope.data.listaDemanda = tkResponse.obj;
+      			}
+      		});
+      	};
+
+      	loadListaDemanda(os.categoriaDemanda);
 
       	$scope.data = {
       		listaCategoriaDemanda: listas.listaCategoriaDemanda,
+      		listaDemanda: [],
       		listaClientesOrigem: listas.listaClientesOrigem,
       		listaClientesDestino: listas.listaClientesDestino,
       		tecAgendamento: tecAgendamento
@@ -117,7 +128,12 @@
       		dataHoraIntervencao: new Date(),
       		dataHoraFimIntervencao: '',
       		categoriaDemanda: os.categoriaDemanda,
+      		demanda: '',
       		clienteOrigem: os.cliente
+      	};
+
+      	$scope.categoriaDemandaChange = function(cd) {
+      		loadListaDemanda(cd);
       	};
 
         $scope.ok = function () {
@@ -128,7 +144,7 @@
           $modalInstance.dismiss('cancel');
         };
       };
-      ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance', 'listas', 'tecAgendamento', 'os'];
+      ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance', 'listas', 'tecAgendamento', 'os', 'tickitService'];
     };
 
     tickitOSController.$inject = ['$scope', '$state', 'tickitService', 'SweetAlert'];

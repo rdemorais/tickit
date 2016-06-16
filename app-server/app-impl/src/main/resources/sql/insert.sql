@@ -62,6 +62,20 @@ insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(next
 insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Venda de Produtos');
 insert into tb_categoria_demanda(co_categoria_demanda, no_categoria) values(nextval('tickit_categoria_demanda_seq'), 'Venda de Serviços');
 
+insert into tb_demanda(co_demanda, ds_demanda, co_categoria_demanda)
+	values(
+		nextval('tickit_demanda_seq'), 
+		'Demanda relacionado a Designer 1',
+		(select co_categoria_demanda from tb_categoria_demanda where no_categoria = 'Design')
+	);
+	
+insert into tb_demanda(co_demanda, ds_demanda, co_categoria_demanda)
+	values(
+		nextval('tickit_demanda_seq'), 
+		'Demanda relacionado a Designer 2',
+		(select co_categoria_demanda from tb_categoria_demanda where no_categoria = 'Design')
+	);
+
 insert into tb_pagina_seg(
 	co_pagina, ds_nome, ds_identificador_unico, ds_url, ds_descricao, ds_icone, link_barra, ind_ativo, ind_pode_ser_pagina_padrao, co_pagina_pai, ordem)	
 	values (
@@ -212,5 +226,5 @@ insert into tb_pessoa(co_pessoa, ind_auto_registro, ds_nome, ds_avatar, co_usuar
 insert into tb_cliente(co_pessoa, ds_tipo_cliente) 
 	values(
 		(select co_pessoa from tb_pessoa where ds_nome = '${cli1.nome}'),
-		'PESSOA_JURIDICA'
+		'PJ'
 	);

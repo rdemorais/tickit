@@ -8,7 +8,7 @@
          <div class="row">
             <div class="col-sm-6">
                <div class="form-group">
-                  <label class="control-label">Usuário</label>
+                  <label class="control-label">Responsável pelo cadastro</label>
                   <p class="form-control-static">{{data.tecAgendamento.nome}}</p>
                </div>
             </div>
@@ -38,8 +38,8 @@
          <div class="row">
             <div class="col-md-6">
                <div class="form-group">
-                  <label class="control-label">Categoria do problema</label>
-                  <ui-select ng-model="intervencao.categoriaDemanda" theme="bootstrap">
+                  <label class="control-label">Categoria da demanda</label>
+                  <ui-select ng-model="intervencao.categoriaDemanda" theme="bootstrap" ng-change="categoriaDemandaChange($select.selected)">
                      <ui-select-match placeholder="Selecione ou pesquise a categoria">{{$select.selected.categoriaDemanda}}</ui-select-match>
                      <ui-select-choices repeat="dem in data.listaCategoriaDemanda | propsFilter: {categoriaDemanda: $select.search}">
                         <div ng-bind-html="dem.categoriaDemanda | highlight: $select.search"></div>
@@ -49,8 +49,13 @@
             </div>
             <div class="col-md-6">
                <div class="form-group">
-                  <label class="control-label">Problema</label>
-                  <input class="form-control" />
+                  <label class="control-label">Demanda</label>
+                  <ui-select ng-model="intervencao.demanda" theme="bootstrap">
+                     <ui-select-match placeholder="Selecione ou pesquise a demanda">{{$select.selected.demanda}}</ui-select-match>
+                     <ui-select-choices repeat="dem in data.listaDemanda | propsFilter: {demanda: $select.search}">
+                        <div ng-bind-html="dem.demanda | highlight: $select.search"></div>
+                     </ui-select-choices>
+                  </ui-select>
                </div>
             </div>
          </div>
@@ -123,7 +128,7 @@
       </form>
    </div>
    <div class="modal-footer">
-      <button ng-click="ok()" class="btn btn-primary">OK</button>
-      <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+      <button ng-click="ok()" class="btn btn-primary">Cadastrar</button>
+      <button ng-click="cancel()" class="btn btn-warning">Cancelar</button>
    </div>
 </div>

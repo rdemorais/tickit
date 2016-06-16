@@ -17,5 +17,5 @@ public interface OSDao extends Dao{
 	public List<PessoaDto> listFuncionarios() throws AkulaRuntimeException;
 	public List<TipoOSDto> listTipoOs() throws AkulaRuntimeException;
 	public List<CategoriaDemandaDto> listCategoriaDemanda() throws AkulaRuntimeException;
-	public List<DemandaDto> listDemanda() throws AkulaRuntimeException;
+	public List<DemandaDto> listDemanda(Long idCatDemanda) throws AkulaRuntimeException;
 }

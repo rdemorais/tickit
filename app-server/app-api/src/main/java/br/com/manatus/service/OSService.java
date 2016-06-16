@@ -20,5 +20,5 @@ public interface OSService {
 	public List<PessoaDto> listFuncionarios() throws AkulaRuntimeException;
 	public List<TipoOSDto> listTipoOs() throws AkulaRuntimeException;
 	public List<CategoriaDemandaDto> listCategoriaDemanda() throws AkulaRuntimeException;
-	public List<DemandaDto> listDemanda() throws AkulaRuntimeException;
+	public List<DemandaDto> listDemanda(DemandaDto dto) throws AkulaRuntimeException;
 }

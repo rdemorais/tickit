@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.manatus.service.OSService;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
+import br.com.manatus.service.dto.DemandaDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
 import br.com.manatus.service.dto.TipoOSDto;
@@ -137,6 +138,22 @@ public class TickItOSController {
 			logger.debug("retornando lista categorias de demandas: " + cDemandas.size());
 			
 			return TickItResponse.ok(cDemandas);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return TickItResponse.error(e.getMessage());
+		}
+	}
+	
+	@RequestMapping(value="/lista-demandas", 
+			method=RequestMethod.POST)
+	@ResponseBody
+	public TickItResponse listDemandas(@RequestBody DemandaDto dto) {
+		try {
+			List<DemandaDto> demandas = osService.listDemanda(dto);
+			
+			logger.debug("retornando lista de demandas: " + demandas.size());
+			
+			return TickItResponse.ok(demandas);
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return TickItResponse.error(e.getMessage());

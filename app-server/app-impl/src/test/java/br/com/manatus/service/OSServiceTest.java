@@ -132,8 +132,8 @@ public class OSServiceTest {
 	@Test
 	public void testListDemanda() {
 		logger.debug("listDemanda");
-		
-		List<DemandaDto> demandas = osService.listDemanda();
+		DemandaDto dto = new DemandaDto(1L, "");
+		List<DemandaDto> demandas = osService.listDemanda(dto);
 		
 		for (DemandaDto demandaDto : demandas) {
 			logger.debug(demandaDto.toString());

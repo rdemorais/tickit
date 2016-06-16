@@ -7,7 +7,7 @@ div
 			.row
 				.col-sm-6
 					.form-group
-						label.control-label Usuário
+						label.control-label Responsável pelo cadastro
 						p.form-control-static {{data.tecAgendamento.nome}}
 				.col-md-3
 					.form-group
@@ -26,16 +26,19 @@ div
 			.row
 				.col-md-6
 					.form-group
-						label.control-label Categoria do problema
-						ui-select(ng-model='intervencao.categoriaDemanda', theme='bootstrap')
+						label.control-label Categoria da demanda
+						ui-select(ng-model='intervencao.categoriaDemanda', theme='bootstrap', ng-change="categoriaDemandaChange($select.selected)")
 							ui-select-match(placeholder='Selecione ou pesquise a categoria') {{$select.selected.categoriaDemanda}}
 							ui-select-choices(repeat='dem in data.listaCategoriaDemanda | propsFilter: {categoriaDemanda: $select.search}')
 								div(ng-bind-html='dem.categoriaDemanda | highlight: $select.search')
 						
 				.col-md-6
 					.form-group
-						label.control-label Problema
-						input.form-control
+						label.control-label Demanda
+						ui-select(ng-model='intervencao.demanda', theme='bootstrap')
+							ui-select-match(placeholder='Selecione ou pesquise a demanda') {{$select.selected.demanda}}
+							ui-select-choices(repeat='dem in data.listaDemanda | propsFilter: {demanda: $select.search}')
+								div(ng-bind-html='dem.demanda | highlight: $select.search')
 			.row
 				.col-md-6
 					.form-group
@@ -87,5 +90,5 @@ div
 						textArea(froala-ng, ng-model="intervencao.observacao", language="pt_br",
 											 toolbar-buttons="['bold', 'italic', 'underline', 'align', 'insertLink', 'insertTable', 'quote']")
 	.modal-footer
-		button.btn.btn-primary(ng-click='ok()') OK
-		button.btn.btn-warning(ng-click='cancel()') Cancel
+		button.btn.btn-primary(ng-click='ok()') Cadastrar
+		button.btn.btn-warning(ng-click='cancel()') Cancelar

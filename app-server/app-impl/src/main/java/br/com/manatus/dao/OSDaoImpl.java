@@ -154,15 +154,17 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<DemandaDto> listDemanda() throws AkulaRuntimeException {
+	public List<DemandaDto> listDemanda(Long idCatDemanda) throws AkulaRuntimeException {
 		StringBuffer hql = new StringBuffer();
 		
 		hql.append("SELECT new br.com.manatus.service.dto.DemandaDto(");
 		hql.append("d.id, ");
 		hql.append("d.demanda) ");
 		hql.append("FROM Demanda d ");
+		hql.append("WHERE d.categoriaDemanda.id = :idCatDemanda ");
 		
 		Query q = em.createQuery(hql.toString());
+		q.setParameter("idCatDemanda", idCatDemanda);
 		return q.getResultList();
 	}
 }

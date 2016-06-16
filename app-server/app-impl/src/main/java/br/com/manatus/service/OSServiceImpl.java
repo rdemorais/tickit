@@ -103,7 +103,7 @@ public class OSServiceImpl implements OSService{
 	}
 	
 	@Transactional
-	public List<DemandaDto> listDemanda() throws AkulaRuntimeException {
-		return osDao.listDemanda();
+	public List<DemandaDto> listDemanda(DemandaDto dto) throws AkulaRuntimeException {
+		return osDao.listDemanda(dto.getId());
 	}
 }
