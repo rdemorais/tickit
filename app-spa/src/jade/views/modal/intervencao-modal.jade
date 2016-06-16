@@ -1,0 +1,91 @@
+div
+	.modal-header
+		button.close(type='button', data-dismiss='modal', aria-hidden='true', ng-click="cancel()") ×
+		h4.modal-title Nova intervenção
+	.modal-body
+		form.form-vertical
+			.row
+				.col-sm-6
+					.form-group
+						label.control-label Usuário
+						p.form-control-static {{data.tecAgendamento.nome}}
+				.col-md-3
+					.form-group
+						label.control-label Data/Hora cadastro
+						p.input-group
+							input.form-control(ng-model="intervencao.dataHoraIntervencao", date-time, format="DD/MM/YYYY HH:mm", locale="pt_br")
+							span.input-group-addon
+								em.fa.fa-calendar
+				.col-md-3
+					.form-group
+						label.control-label Data/Hora fechamento
+						p.input-group
+							input.form-control(ng-model="intervencao.dataHoraFimIntervencao", date-time, format="DD/MM/YYYY HH:mm", locale="pt_br")
+							span.input-group-addon
+								em.fa.fa-calendar
+			.row
+				.col-md-6
+					.form-group
+						label.control-label Categoria do problema
+						ui-select(ng-model='intervencao.categoriaDemanda', theme='bootstrap')
+							ui-select-match(placeholder='Selecione ou pesquise a categoria') {{$select.selected.categoriaDemanda}}
+							ui-select-choices(repeat='dem in data.listaCategoriaDemanda | propsFilter: {categoriaDemanda: $select.search}')
+								div(ng-bind-html='dem.categoriaDemanda | highlight: $select.search')
+						
+				.col-md-6
+					.form-group
+						label.control-label Problema
+						input.form-control
+			.row
+				.col-md-6
+					.form-group
+						label.control-label Ponto 1: Origem
+						ui-select(ng-model='intervencao.clienteOrigem', theme='bootstrap')
+							ui-select-match(placeholder='Selecione ou pesquise o cliente') {{$select.selected.nome}}
+							ui-select-choices(repeat='cli in data.listaClientesOrigem | propsFilter: {nome: $select.search, email: $select.search}')
+								div(ng-bind-html='cli.nome | highlight: $select.search')
+								small
+									|eMail: 
+									span(ng-bind-html="''+cli.email | highlight: $select.search")
+									|&nbsp; Natureza: 
+									span(ng-bind-html="''+cli.tipoCliente | highlight: $select.search")
+				.col-md-6
+					.form-group
+						label.control-label Ponto 2: Destino
+						ui-select(ng-model='intervencao.clienteDestino', theme='bootstrap')
+							ui-select-match(placeholder='Selecione ou pesquise o cliente') {{$select.selected.nome}}
+							ui-select-choices(repeat='cli in data.listaClientesDestino | propsFilter: {nome: $select.search, email: $select.search}')
+								div(ng-bind-html='cli.nome | highlight: $select.search')
+								small
+									|eMail: 
+									span(ng-bind-html="''+cli.email | highlight: $select.search")
+									|&nbsp; Natureza: 
+									span(ng-bind-html="''+cli.tipoCliente | highlight: $select.search")
+			.row
+				.col-md-6
+					.form-group
+							label.control-label OS concluída?
+						.row
+							.col-sm-6
+								.radio-inline.c-radio
+									label
+										input(type='radio', name="i-radio", value="true")
+										span.fa.fa-circle
+										| Sim
+								.radio-inline.c-radio
+									label
+										input(type='radio', name="i-radio", value="false")
+										span.fa.fa-circle
+										| Não
+				.col-md-6
+					.form-group
+						label.control-label Distância
+			.row.mt
+				.col-md-12
+					.form-group
+						label.control-label Observações
+						textArea(froala-ng, ng-model="intervencao.observacao", language="pt_br",
+											 toolbar-buttons="['bold', 'italic', 'underline', 'align', 'insertLink', 'insertTable', 'quote']")
+	.modal-footer
+		button.btn.btn-primary(ng-click='ok()') OK
+		button.btn.btn-warning(ng-click='cancel()') Cancel

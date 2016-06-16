@@ -1,0 +1,74 @@
+.container-fluid
+	.row
+		.col-lg-12
+			.panel.panel-default
+				.panel-heading
+					strong.pull-right.text-success OS: {{data.os.codigoChamado}}
+					|Manutenção de intervenções
+				.panel-body
+					.col-md-6
+						form.form-horizontal
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Cliente
+									col-sm-8
+										p.form-control-static.text-warning {{data.os.cliente.nome}}
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Descrição da Demanda
+									col-sm-8
+										p.form-control-static(ng-bind-html="data.os.descricaoDemanda")
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Sugestão de Solução
+									col-sm-8
+										p.form-control-static(ng-bind-html="data.os.sugestaoSolucao")
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Data limite de atendimento
+									col-sm-8
+										p.form-control-static {{data.os.dataLimiteAtendimento}}
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Data Hora do chamado
+									col-sm-8
+										p.form-control-static {{data.os.dataHoraChamado}}
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Categoria da Demanda
+									col-sm-8
+										p.form-control-static {{data.os.categoriaDemanda.categoriaDemanda}}
+							fieldset
+								.form-group
+									label.col-sm-4.control-label Tipo OS
+									col-sm-8
+										p.form-control-static {{data.os.tipoOs.tipoOs}}
+					.col-md-6
+						form.form-horizontal
+							label.col-sm-4.control-label Técnico designado
+							col-sm-8
+								p.form-control-static {{data.os.tecResponsavel.nome}}
+						hr
+						.row
+							.col-md-12
+								button.btn.btn-block.btn-success.mb(ng-click='openModalIntervencao()') Nova Intervenção
+						.row
+							.col-md-12
+								.table-responsive.table-striped.table-bordered.table-hover
+									table.table
+										thead
+											tr
+												th Ord#
+												th Data/Hora
+												th Desl
+												th Demanda
+												th Fim
+												th Ok?
+										tbody
+											tr(ng-repeat="int in data.intervencoes")
+												td {{$index +1}}
+												td {{int.dataHoraIntervencao}}
+												td 53
+												td {{int.demanda}}
+												td {{int.dataHoraFimIntervencao}}
+												td Sim

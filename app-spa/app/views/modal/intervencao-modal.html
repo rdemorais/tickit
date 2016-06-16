@@ -1,0 +1,129 @@
+<div>
+   <div class="modal-header">
+      <button type="button" data-dismiss="modal" aria-hidden="true" ng-click="cancel()" class="close">×</button>
+      <h4 class="modal-title">Nova intervenção</h4>
+   </div>
+   <div class="modal-body">
+      <form class="form-vertical">
+         <div class="row">
+            <div class="col-sm-6">
+               <div class="form-group">
+                  <label class="control-label">Usuário</label>
+                  <p class="form-control-static">{{data.tecAgendamento.nome}}</p>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label class="control-label">Data/Hora cadastro</label>
+                  <p class="input-group">
+                     <input ng-model="intervencao.dataHoraIntervencao" date-time="date-time" format="DD/MM/YYYY HH:mm" locale="pt_br" class="form-control" />
+                     <span class="input-group-addon">
+                        <em class="fa fa-calendar"></em>
+                     </span>
+                  </p>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+                  <label class="control-label">Data/Hora fechamento</label>
+                  <p class="input-group">
+                     <input ng-model="intervencao.dataHoraFimIntervencao" date-time="date-time" format="DD/MM/YYYY HH:mm" locale="pt_br" class="form-control" />
+                     <span class="input-group-addon">
+                        <em class="fa fa-calendar"></em>
+                     </span>
+                  </p>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">Categoria do problema</label>
+                  <ui-select ng-model="intervencao.categoriaDemanda" theme="bootstrap">
+                     <ui-select-match placeholder="Selecione ou pesquise a categoria">{{$select.selected.categoriaDemanda}}</ui-select-match>
+                     <ui-select-choices repeat="dem in data.listaCategoriaDemanda | propsFilter: {categoriaDemanda: $select.search}">
+                        <div ng-bind-html="dem.categoriaDemanda | highlight: $select.search"></div>
+                     </ui-select-choices>
+                  </ui-select>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">Problema</label>
+                  <input class="form-control" />
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">Ponto 1: Origem</label>
+                  <ui-select ng-model="intervencao.clienteOrigem" theme="bootstrap">
+                     <ui-select-match placeholder="Selecione ou pesquise o cliente">{{$select.selected.nome}}</ui-select-match>
+                     <ui-select-choices repeat="cli in data.listaClientesOrigem | propsFilter: {nome: $select.search, email: $select.search}">
+                        <div ng-bind-html="cli.nome | highlight: $select.search"></div>
+                        <small>eMail:
+                           <span ng-bind-html="''+cli.email | highlight: $select.search"></span>&nbsp; Natureza:
+                           <span ng-bind-html="''+cli.tipoCliente | highlight: $select.search"></span>
+                        </small>
+                     </ui-select-choices>
+                  </ui-select>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">Ponto 2: Destino</label>
+                  <ui-select ng-model="intervencao.clienteDestino" theme="bootstrap">
+                     <ui-select-match placeholder="Selecione ou pesquise o cliente">{{$select.selected.nome}}</ui-select-match>
+                     <ui-select-choices repeat="cli in data.listaClientesDestino | propsFilter: {nome: $select.search, email: $select.search}">
+                        <div ng-bind-html="cli.nome | highlight: $select.search"></div>
+                        <small>eMail:
+                           <span ng-bind-html="''+cli.email | highlight: $select.search"></span>&nbsp; Natureza:
+                           <span ng-bind-html="''+cli.tipoCliente | highlight: $select.search"></span>
+                        </small>
+                     </ui-select-choices>
+                  </ui-select>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">OS concluída?</label>
+               </div>
+               <div class="row">
+                  <div class="col-sm-6">
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input type="radio" name="i-radio" value="true" />
+                           <span class="fa fa-circle"></span>Sim</label>
+                     </div>
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input type="radio" name="i-radio" value="false" />
+                           <span class="fa fa-circle"></span>Não</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <div class="form-group">
+                  <label class="control-label">Distância</label>
+               </div>
+            </div>
+         </div>
+         <div class="row mt">
+            <div class="col-md-12">
+               <div class="form-group">
+                  <label class="control-label">Observações</label>
+                  <textArea froala-ng="froala-ng" ng-model="intervencao.observacao" language="pt_br" toolbar-buttons="['bold', 'italic', 'underline', 'align', 'insertLink', 'insertTable', 'quote']"></textArea>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+   <div class="modal-footer">
+      <button ng-click="ok()" class="btn btn-primary">OK</button>
+      <button ng-click="cancel()" class="btn btn-warning">Cancel</button>
+   </div>
+</div>

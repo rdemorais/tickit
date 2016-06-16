@@ -5,6 +5,8 @@
         .controller('TickitLoginController', tickitLoginController)
         .controller('TickitDashboardController', tickitDashboardController)
         .controller('TickitOSController', tickitOSController)
+        .controller('TickItOSIntervencaoController', tickItOSIntervencaoController)
+        .controller('TickitOSListaController', tickitOSListaController)
         .filter('propsFilter', propsFilter);
 
     tickitLoginController.$inject = ['$scope', '$state', 'OAuth']
@@ -23,9 +25,110 @@
     	};
     };
 
+    tickitOSListaController.$inject = ['$scope', '$state'];
+    function tickitOSListaController($scope, $state) {
+
+    };
+
     tickitDashboardController.$inject = ['$scope', '$state'];
     function tickitDashboardController($scope, $state) {
     	$scope.test = 'Ok, funcionou';
+    };
+
+    tickItOSIntervencaoController.$inject = ['$scope', '$uibModal', '$stateParams', 'tickitService']
+    function tickItOSIntervencaoController($scope, $modal, $stateParams, tickitService) {
+
+    	$scope.data = {
+    		listas: {
+    			listaCategoriaDemanda: [],
+    			listaClientesOrigem: [],
+    			listaClientesDestino: []
+    		},
+    		tecAgendamento: null,
+    		intervencoes: [],
+    		os: {}
+    	};
+
+    	tickitService.loadOs($stateParams.osId).then(function(tkResponse) {
+    		if(tkResponse.status = 'success') {
+    			$scope.data.os = tkResponse.obj;
+    		}
+    	});
+
+    	//Init Listas
+    	tickitService.usuarioLogado().then(function(tkResponse) {
+  			if(tkResponse.status = 'success') {
+  				$scope.data.tecAgendamento = tkResponse.obj;	
+  			}
+  		});
+
+      tickitService.listaCategoriaDemanda().then(function(tkResponse) {
+  			if(tkResponse.status = 'success') {
+  				$scope.data.listas.listaCategoriaDemanda = tkResponse.obj;	
+  			}
+  		});
+
+  		tickitService.listaClientes().then(function(tkResponse) {
+  			if(tkResponse.status = 'success') {
+  				$scope.data.listas.listaClientesOrigem = tkResponse.obj;
+  				$scope.data.listas.listaClientesDestino = tkResponse.obj;
+  			}
+  		});
+
+      $scope.openModalIntervencao = function() {
+
+        var modalInstance = $modal.open({
+          templateUrl: 'app/views/modal/intervencao-modal.html',
+          controller: ModalInstanceCtrl,
+          size: 'lg',
+          resolve: {
+          	listas: function() {
+          		return $scope.data.listas;
+          	},
+          	tecAgendamento: function() {
+          		return $scope.data.tecAgendamento;
+          	},
+          	os: function() {
+          		return $scope.data.os;
+          	}
+          }
+        });
+
+        modalInstance.result.then(function (intervencao) {
+          $scope.data.intervencoes.push(intervencao);
+        }, function () {
+          console.log('Modal dismissed with Cancel status');
+        });
+      };
+
+      // Please note that $modalInstance represents a modal window (instance) dependency.
+      // It is not the same as the $modal service used above.
+      
+      var ModalInstanceCtrl = function ($scope, $modalInstance, listas, tecAgendamento, os) {
+
+      	$scope.data = {
+      		listaCategoriaDemanda: listas.listaCategoriaDemanda,
+      		listaClientesOrigem: listas.listaClientesOrigem,
+      		listaClientesDestino: listas.listaClientesDestino,
+      		tecAgendamento: tecAgendamento
+      	};
+
+      	$scope.intervencao = {
+      		dataHoraIntervencao: new Date(),
+      		dataHoraFimIntervencao: '',
+      		categoriaDemanda: os.categoriaDemanda,
+      		clienteOrigem: os.cliente
+      	};
+
+        $scope.ok = function () {
+          $modalInstance.close($scope.intervencao);
+        };
+
+        $scope.cancel = function () {
+          $modalInstance.dismiss('cancel');
+        };
+      };
+      ModalInstanceCtrl.$inject = ['$scope', '$uibModalInstance', 'listas', 'tecAgendamento', 'os'];
     };
 
     tickitOSController.$inject = ['$scope', '$state', 'tickitService', 'SweetAlert'];
@@ -62,7 +165,7 @@
 		          closeOnConfirm: true 
 		        }, function(isConfirm){  
 		          if (isConfirm) {     
-		            $state.go('app.os-main');
+		            $state.go('app.os-intervencao', {osId: tkResponse.obj.id});
 		          }
 		        });		
     			}	

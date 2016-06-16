@@ -36,4 +36,6 @@
 							td {{os.dataHoraChamado}}
 							td {{os.dataLimiteAtendimento}}
 							td {{os.tecResponsavel.nome}}
-							td --
+							td
+								a(href="", ng-click="visualizarOS(os.id)")
+									em.fa.fa-eye.fa-2x

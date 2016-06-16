@@ -48,8 +48,12 @@ public class OSServiceImpl implements OSService{
 		return usuarioLogado;
 	}
 	
+	public OSDto loadOS(Long id) throws AkulaRuntimeException {
+		return osDao.loadOS(id);
+	}
+	
 	@Transactional
-	public void manterOS(OSDto dto) throws AkulaRuntimeException {
+	public OSDto manterOS(OSDto dto) throws AkulaRuntimeException {
 		OS os;
 		EventoAuditoria evAud;
 		if(dto.getId() != null) {
@@ -62,9 +66,13 @@ public class OSServiceImpl implements OSService{
 		
 		converterService.convertOS(os, dto);
 		
-		osDao.merge(os);
+		OS osMerged = (OS) osDao.merge(os);
 
-		sentinelaAuditoriaEventPublisher.notificar(oauth2SentinelaService.usuarioLogado(), os, evAud);
+		sentinelaAuditoriaEventPublisher.notificar(oauth2SentinelaService.usuarioLogado(), osMerged, evAud);
+		
+		OSDto dtoMerged = new OSDto();
+		dtoMerged.setId(osMerged.getId());
+		return dtoMerged;
 	}
 	
 	@Transactional

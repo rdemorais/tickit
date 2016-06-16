@@ -3,6 +3,7 @@ package br.com.manatus.dao;
 import java.util.List;
 
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import br.com.manatus.exc.AkulaDaoRuntimeException;
@@ -36,6 +37,43 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 			return null;
 		} catch (Exception e) {
 			throw new AkulaRuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	public OSDto loadOS(Long osId) throws AkulaRuntimeException {
+		try {
+			StringBuffer hql = new StringBuffer();
+			hql.append("SELECT new br.com.manatus.service.dto.OSDto(");
+			hql.append("os.id, ");
+			hql.append("os.dataHoraChamado, ");
+			hql.append("c.id, ");
+			hql.append("c.nome, ");
+			hql.append("os.dataLimiteAtendimento, ");
+			hql.append("tec.nome, ");
+			hql.append("os.descricaoDemanda, ");
+			hql.append("os.sugestaoSolucao, ");
+			hql.append("cd.categoriaDemanda.id, ");
+			hql.append("cd.categoriaDemanda.categoriaDemanda, ");
+			hql.append("tOs.tipoOs.tipoOs) ");
+			
+			hql.append("FROM OS os ");
+			hql.append("JOIN os.cliente c ");
+			hql.append("JOIN os.tecResponsavel tec ");
+			hql.append("JOIN os.categoriaDemanda cd ");
+			hql.append("JOIN os.tipoOs tOs ");
+			hql.append("WHERE os.id = :osId ");
+			
+			Query q = em.createQuery(hql.toString());
+			
+			q.setParameter("osId", osId);
+			
+			return (OSDto) q.getSingleResult();
+		} catch (NonUniqueResultException e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
+		} catch (NoResultException e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
+		} catch (Exception e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
 		}
 	}
 	

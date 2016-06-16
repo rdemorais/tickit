@@ -11,6 +11,7 @@
     	listaCategoriaDemanda: '/os/lista-categorias-demandas',
     	listaOs: '/os/lista-os',
     	manterOs: '/os/manter',
+    	loadOs: '/os/load-os',
     	servers: {
     		dev: {
     			baseUrl: 'http://localhost:8080/tickit',
@@ -59,6 +60,10 @@
     		manterOs: {
     			get: function() { return config.manterOs; },
         	set: function(value) { config.manterOs = value; }
+    		},
+    		loadOs: {
+    			get: function() { return config.loadOs; },
+        	set: function(value) { config.loadOs = value; }
     		}
     	});
 
@@ -96,6 +101,10 @@
 
 	    	tickitService.manterOs = function(os) {
 	    		return osService.manterOs(os);
+	    	};
+
+	    	tickitService.loadOs = function(os) {
+	    		return osService.loadOs(os);
 	    	};
 	    	return tickitService;
 	    }
@@ -173,6 +182,16 @@
 				  				return error;
 				  			});
 	    };
+
+	    osS.loadOs = function(osId) {
+	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.loadOs, osId, headers)
+				  			.then(function(response) {
+				  				return response.data;
+				  			}).catch(function(error) {
+				  				return error;
+				  			});
+	    };
+
 	    return osS;
     }
 })();

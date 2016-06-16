@@ -45,7 +45,7 @@
           abstract: true,
           templateUrl: Route.base('app.html'),
           resolve: {
-            _assets: Route.require('icons', 'toaster', 'animate')
+            _assets: Route.require('icons', 'toaster', 'animate', 'moment', 'ui.select', 'datePicker', 'froala', 'oitozero.ngSweetAlert')
           }
         })
         .state('app-login', {
@@ -70,7 +70,7 @@
         })
         .state('app.os-main', {
           url: '/os-main',
-          controller: 'TickitDashboardController',
+          controller: 'TickitOSListaController',
           templateUrl: Route.base('os-main.html'),
           resolve: {}
         })
@@ -79,8 +79,17 @@
           controller: 'TickitOSController',
           templateUrl: Route.base('os-manter.html'),
           resolve: {
-            assets: Route.require('moment', 'textAngular', 'slimscroll', 'ui.select', 'datePicker', 'froala', 'oitozero.ngSweetAlert')
+            assets: Route.require('slimscroll')
           }
+        })
+        .state('app.os-intervencao', {
+          params: {
+            'osId': null
+          },
+          url: '/os-intervencao',
+          controller: 'TickItOSIntervencaoController',
+          templateUrl: Route.base('os-intervencao.html'),
+          resolve: {}
         });
     }
 })();

@@ -16,6 +16,6 @@
       });
 
     }
-    tooltipConfig.$inject = ['$tooltipProvider'];
+    tooltipConfig.$inject = ['$uibTooltipProvider'];
 
 })();

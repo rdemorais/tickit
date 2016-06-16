@@ -35,6 +35,16 @@ public class OSDto {
 		this.codigoChamado = id + "/" + dtAgend.get(Calendar.YEAR);
 	}
 	
+	public OSDto(Long id, Date dataHoraChamado, Long idCliente, String nomeCliente, Date dataLimiteAtendimento, String nomeTecnico, 
+			String descricaoDemanda, String sugestaoSolucao, Long idCategoriaDemanda, String categoriaDemanda, String tipoOs) {
+		this(id, dataHoraChamado, nomeCliente, dataLimiteAtendimento, nomeTecnico);
+		this.cliente.setId(idCliente);
+		this.descricaoDemanda = descricaoDemanda;
+		this.sugestaoSolucao = sugestaoSolucao;
+		this.categoriaDemanda = new CategoriaDemandaDto(idCategoriaDemanda, categoriaDemanda);
+		this.tipoOs = new TipoOSDto(1L, tipoOs);
+	}
+	
 	public Long getId() {
 		return id;
 	}

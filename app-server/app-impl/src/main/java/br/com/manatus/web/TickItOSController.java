@@ -52,16 +52,27 @@ public class TickItOSController {
 		}
 	}
 	
+	@RequestMapping(value="/load-os", 
+			method=RequestMethod.POST)
+	@ResponseBody
+	public TickItResponse loadOS(@RequestBody Long osId) {
+		try {
+			
+			return TickItResponse.ok(osService.loadOS(osId));
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage(), e);
+			return TickItResponse.error(e.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/manter", 
 			method=RequestMethod.POST)
 	@ResponseBody
 	public TickItResponse manterOS(@RequestBody OSDto os) {
 		try {
-			logger.debug(os.toString());
+			OSDto dto = osService.manterOS(os);
 			
-			osService.manterOS(os);
-			
-			return TickItResponse.ok();
+			return TickItResponse.ok(dto);
 		} catch (RuntimeException e) {
 			logger.error(e.getMessage(), e);
 			return TickItResponse.error(e.getMessage());

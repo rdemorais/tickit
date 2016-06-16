@@ -47,7 +47,11 @@
                      <td>{{os.dataHoraChamado}}</td>
                      <td>{{os.dataLimiteAtendimento}}</td>
                      <td>{{os.tecResponsavel.nome}}</td>
-                     <td>--</td>
+                     <td>
+                        <a href="" ng-click="visualizarOS(os.id)">
+                           <em class="fa fa-eye fa-2x"></em>
+                        </a>
+                     </td>
                   </tr>
                </tbody>
             </table>
