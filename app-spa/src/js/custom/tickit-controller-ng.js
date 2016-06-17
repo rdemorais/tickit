@@ -95,8 +95,12 @@
         });
 
         modalInstance.result.then(function (intervencao) {
-          $scope.data.intervencoes.push(intervencao);
-        }, function () {
+        	tickitService.manterIntervencao(intervencao).then(function(tkResponse) {
+        		if(tkResponse.status = 'success') {
+        			$scope.data.intervencoes.push(intervencao);
+        		}
+        	});
+        }, function() {
           console.log('Modal dismissed with Cancel status');
         });
       };
@@ -104,7 +108,7 @@
       // Please note that $modalInstance represents a modal window (instance) dependency.
       // It is not the same as the $modal service used above.
       
-      var ModalInstanceCtrl = function ($scope, $modalInstance, listas, tecAgendamento, os, tickitService) {
+      var ModalInstanceCtrl = function($scope, $modalInstance, listas, tecAgendamento, os, tickitService) {
 
       	var loadListaDemanda = function(cd) {
       		tickitService.listaDemanda(cd).then(function(tkResponse) {
@@ -120,8 +124,7 @@
       		listaCategoriaDemanda: listas.listaCategoriaDemanda,
       		listaDemanda: [],
       		listaClientesOrigem: listas.listaClientesOrigem,
-      		listaClientesDestino: listas.listaClientesDestino,
-      		tecAgendamento: tecAgendamento
+      		listaClientesDestino: listas.listaClientesDestino
       	};
 
       	$scope.intervencao = {
@@ -129,7 +132,10 @@
       		dataHoraFimIntervencao: '',
       		categoriaDemanda: os.categoriaDemanda,
       		demanda: '',
-      		clienteOrigem: os.cliente
+      		clienteOrigem: os.cliente,
+      		tecAgendamento: tecAgendamento,
+      		statusOs: 'ABERTA',
+      		os: os
       	};
 
       	$scope.categoriaDemandaChange = function(cd) {

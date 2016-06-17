@@ -12,6 +12,7 @@
     	listaDemanda: '/os/lista-demandas',
     	listaOs: '/os/lista-os',
     	manterOs: '/os/manter',
+    	manterIntervencao: '/os/manter-intervencao',
     	loadOs: '/os/load-os',
     	servers: {
     		dev: {
@@ -62,6 +63,10 @@
 					get: function() { return config.listaOs; },
         	set: function(value) { config.listaOs = value; }
     		},
+    		manterIntervencao: {
+    			get: function() { return config.manterIntervencao; },
+        	set: function(value) { config.manterIntervencao = value; }
+    		},
     		manterOs: {
     			get: function() { return config.manterOs; },
         	set: function(value) { config.manterOs = value; }
@@ -108,6 +113,10 @@
 	    		return osService.listaOs();
 	    	};
 
+	    	tickitService.manterIntervencao = function(intervencao) {
+	    		return osService.manterIntervencao(intervencao);
+	    	};
+
 	    	tickitService.manterOs = function(os) {
 	    		return osService.manterOs(os);
 	    	};
@@ -129,85 +138,62 @@
         'Content-Type': 'application/json'
     	};
 
-    	osS.usuarioLogado = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.usuarioLogado, null, headers)
+    	var simpleCall = function(url) {
+					return $http.post(envOpts.baseUrl + envOpts.tokenApi + url, null, headers)
 				  			.then(function(response) {
 				  				return response.data;
 				  			}).catch(function(error) {
 				  				return error;
 				  			});
+	    };
+
+	    var parameterCall = function(url, param) {
+	    	return $http.post(envOpts.baseUrl + envOpts.tokenApi + url, param, headers)
+				  			.then(function(response) {
+				  				return response.data;
+				  			}).catch(function(error) {
+				  				return error;
+				  			});
+	    };
+
+    	osS.usuarioLogado = function() {
+	  		return simpleCall(config.usuarioLogado);
 	    };
 
 	    osS.listaTipoOs = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaTipoOs, null, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return simpleCall(config.listaTipoOs);
 	    };
 
 	    osS.listaClientes = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaClientes, null, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return simpleCall(config.listaClientes);
 	    };
 
 	    osS.listaTecnicos = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaTecnicos, null, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return simpleCall(config.listaTecnicos);
 	    };
 
 	    osS.listaCategoriaDemanda = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaCategoriaDemanda, null, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return simpleCall(config.listaCategoriaDemanda);
 	    };
 
 	    osS.listaDemanda = function(categoriaDemanda) {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaDemanda, categoriaDemanda, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return parameterCall(config.listaDemanda, categoriaDemanda);
 	    };
 
 	    osS.listaOs = function() {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.listaOs, null, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return simpleCall(config.listaOs);
+	    };
+
+	    osS.manterIntervencao = function(intervencao) {
+	    	return parameterCall(config.manterIntervencao, intervencao);
 	    };
 
 	    osS.manterOs = function(os) {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.manterOs, os, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return parameterCall(config.manterOs, os);
 	    };
 
 	    osS.loadOs = function(osId) {
-	  		return $http.post(envOpts.baseUrl + envOpts.tokenApi + config.loadOs, osId, headers)
-				  			.then(function(response) {
-				  				return response.data;
-				  			}).catch(function(error) {
-				  				return error;
-				  			});
+	  		return parameterCall(config.loadOs, osId);
 	    };
 
 	    return osS;

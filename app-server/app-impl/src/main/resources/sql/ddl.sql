@@ -47,7 +47,7 @@
         co_cliente_origem int8,
         co_demanda int8,
         co_os int8,
-        co_tecnico_responsavel int8,
+        co_tecnico_agendamento int8,
         primary key (co_intervencao)
     );
     create table tb_os (
@@ -187,8 +187,8 @@
         foreign key (co_os) 
         references tb_os;
     alter table tb_intervencao 
-        add constraint FK_b28kx9few7gcr0tranxfiwg88 
-        foreign key (co_tecnico_responsavel) 
+        add constraint FK_i65bb2ov5l1gbhgtwgan3ace6 
+        foreign key (co_tecnico_agendamento) 
         references tb_funcionario;
     alter table tb_os 
         add constraint FK_44cp1gkfkgpu9di189kda8xdu 

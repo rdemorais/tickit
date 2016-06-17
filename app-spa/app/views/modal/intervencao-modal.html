@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                <div class="form-group">
                   <label class="control-label">Responsável pelo cadastro</label>
-                  <p class="form-control-static">{{data.tecAgendamento.nome}}</p>
+                  <p class="form-control-static">{{intervencao.tecAgendamento.nome}}</p>
                </div>
             </div>
             <div class="col-md-3">
@@ -100,12 +100,12 @@
                   <div class="col-sm-6">
                      <div class="radio-inline c-radio">
                         <label>
-                           <input type="radio" name="i-radio" value="true" />
+                           <input type="radio" name="i-radio" value="FECHADA" ng-model="intervencao.statusOs" />
                            <span class="fa fa-circle"></span>Sim</label>
                      </div>
                      <div class="radio-inline c-radio">
                         <label>
-                           <input type="radio" name="i-radio" value="false" />
+                           <input type="radio" name="i-radio" value="ABERTA" ng-model="intervencao.statusOs" />
                            <span class="fa fa-circle"></span>Não</label>
                      </div>
                   </div>

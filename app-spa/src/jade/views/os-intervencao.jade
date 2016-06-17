@@ -60,7 +60,6 @@
 											tr
 												th Ord#
 												th Data/Hora
-												th Desl
 												th Demanda
 												th Fim
 												th Ok?
@@ -68,7 +67,7 @@
 											tr(ng-repeat="int in data.intervencoes")
 												td {{$index +1}}
 												td {{int.dataHoraIntervencao}}
-												td 53
 												td {{int.demanda}}
 												td {{int.dataHoraFimIntervencao}}
-												td Sim
+												td(ng-if="int.statusOs == 'FECHADA'") Sim
+												td(ng-if="int.statusOs == 'ABERTA'") Não

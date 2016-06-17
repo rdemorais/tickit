@@ -13,8 +13,8 @@ public interface Intervencao {
 	public void setOs(OS os);
 	public Demanda getDemanda();
 	public void setDemanda(Demanda demanda);
-	public Funcionario getTecResponsavel();
-	public void setTecResponsavel(Funcionario tecResponsavel);
+	public Funcionario getTecAgendamento();
+	public void setTecAgendamento(Funcionario tecAgendamento);
 	public Cliente getClienteOrigem();
 	public void setClienteOrigem(Cliente clienteOrigem);
 	public Cliente getClienteDestino();

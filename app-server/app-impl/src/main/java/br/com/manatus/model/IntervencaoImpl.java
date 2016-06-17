@@ -29,6 +29,9 @@ public class IntervencaoImpl implements Intervencao{
 	@Column(name="dt_fim_intervencao")
 	private Date dataHoraFimIntervencao;
 	
+	@Column(name="ds_obs", columnDefinition="TEXT")
+	private String observacao;
+	
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=OSImpl.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="co_os", unique=false)
 	private OS os;
@@ -38,8 +41,8 @@ public class IntervencaoImpl implements Intervencao{
 	private Demanda demanda;
 	
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=FuncionarioImpl.class, fetch = FetchType.LAZY)
-	@JoinColumn(name="co_tecnico_responsavel", unique=false)
-	private Funcionario tecResponsavel;
+	@JoinColumn(name="co_tecnico_agendamento", unique=false)
+	private Funcionario tecAgendamento;
 	
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=ClienteImpl.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="co_cliente_origem")
@@ -48,9 +51,6 @@ public class IntervencaoImpl implements Intervencao{
 	@OneToOne(cascade=CascadeType.REFRESH, targetEntity=ClienteImpl.class, fetch = FetchType.LAZY)
 	@JoinColumn(name="co_cliente_destino")
 	private Cliente clienteDestino;
-	
-	@Column(name="ds_obs", columnDefinition="TEXT")
-	private String observacao;
 	
 	public Long getId() {
 		return id;
@@ -92,12 +92,12 @@ public class IntervencaoImpl implements Intervencao{
 		this.demanda = demanda;
 	}
 
-	public Funcionario getTecResponsavel() {
-		return tecResponsavel;
+	public Funcionario getTecAgendamento() {
+		return tecAgendamento;
 	}
 
-	public void setTecResponsavel(Funcionario tecResponsavel) {
-		this.tecResponsavel = tecResponsavel;
+	public void setTecAgendamento(Funcionario tecAgendamento) {
+		this.tecAgendamento = tecAgendamento;
 	}
 
 	public Cliente getClienteOrigem() {

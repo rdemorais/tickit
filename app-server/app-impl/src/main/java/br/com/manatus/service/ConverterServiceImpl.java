@@ -99,7 +99,7 @@ public class ConverterServiceImpl implements ConverterService{
 		try {
 			Intervencao inter = null;
 			Demanda demanda = null;
-			Funcionario tecResponsavel = null;
+			Funcionario tecAgendamento = null;
 			Cliente clienteOrigem = null;
 			Cliente clienteDestino = null;
 			OS os = null;
@@ -118,11 +118,11 @@ public class ConverterServiceImpl implements ConverterService{
 				}
 			}
 			
-			if(dto.getTecResponsavel() != null) {
-				tecResponsavel = osDao.find(Funcionario.class, dto.getTecResponsavel().getId());
+			if(dto.getTecAgendamento() != null) {
+				tecAgendamento = osDao.find(Funcionario.class, dto.getTecAgendamento().getId());
 				
-				if(tecResponsavel == null) {
-					throw new AkulaServiceRuntimeException("Tecnico Responsavel nao encontrado na base com ID: [" + dto.getTecResponsavel().getId() + "]");
+				if(tecAgendamento == null) {
+					throw new AkulaServiceRuntimeException("Tecnico Agendamento nao encontrado na base com ID: [" + dto.getTecAgendamento().getId() + "]");
 				}
 			}
 			
@@ -156,9 +156,10 @@ public class ConverterServiceImpl implements ConverterService{
 				inter.setDataHoraFimIntervencao(sdf.parse(dto.getDataHoraFimIntervencao()));
 			}
 			inter.setOs(os);
-			inter.setTecResponsavel(tecResponsavel);
+			inter.setTecAgendamento(tecAgendamento);
 			inter.setClienteOrigem(clienteOrigem);
 			inter.setClienteDestino(clienteDestino);
+			inter.setDemanda(demanda);
 			
 			return inter;
 		} catch (ParseException e) {

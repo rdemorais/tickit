@@ -68,18 +68,18 @@ public class OSServiceTest {
 		IntervencaoDto interDto = new IntervencaoDto();
 		PessoaDto clienteOrigem = new PessoaDto();
 		PessoaDto clienteDestino = new PessoaDto();
-		PessoaDto tecResponsavel = new PessoaDto();
+		PessoaDto tecAgendamento = new PessoaDto();
 		
 		osDto.setId(1L);
 		clienteOrigem.setId(4L);
 		clienteDestino.setId(4L);
-		tecResponsavel.setId(2L);
+		tecAgendamento.setId(2L);
 		
 		interDto.setObservacao("observação da intervenção");
 		interDto.setDataHoraIntervencao("2016-06-08T01:18:15.824Z");
 		interDto.setClienteOrigem(clienteOrigem);
 		interDto.setClienteDestino(clienteDestino);
-		interDto.setTecResponsavel(tecResponsavel);
+		interDto.setTecAgendamento(tecAgendamento);
 		interDto.setOs(osDto);
 		
 		osService.manterIntervencao(interDto);

@@ -8,7 +8,7 @@ div
 				.col-sm-6
 					.form-group
 						label.control-label Responsável pelo cadastro
-						p.form-control-static {{data.tecAgendamento.nome}}
+						p.form-control-static {{intervencao.tecAgendamento.nome}}
 				.col-md-3
 					.form-group
 						label.control-label Data/Hora cadastro
@@ -72,12 +72,12 @@ div
 							.col-sm-6
 								.radio-inline.c-radio
 									label
-										input(type='radio', name="i-radio", value="true")
+										input(type='radio', name="i-radio", value="FECHADA", ng-model="intervencao.statusOs")
 										span.fa.fa-circle
 										| Sim
 								.radio-inline.c-radio
 									label
-										input(type='radio', name="i-radio", value="false")
+										input(type='radio', name="i-radio", value="ABERTA", ng-model="intervencao.statusOs")
 										span.fa.fa-circle
 										| Não
 				.col-md-6

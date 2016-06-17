@@ -78,7 +78,7 @@ public class OSServiceImpl implements OSService{
 	@Transactional
 	public void manterIntervencao(IntervencaoDto dto) throws AkulaRuntimeException {
 		Intervencao inter = converterService.convertIntervencao(dto);
-		
+		//TODO Verificar StatusOS e modificar a OS em caso de FECHADA
 		osDao.merge(inter);
 	}
 	

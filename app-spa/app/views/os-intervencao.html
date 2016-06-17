@@ -86,7 +86,6 @@
                                  <tr>
                                     <th>Ord#</th>
                                     <th>Data/Hora</th>
-                                    <th>Desl</th>
                                     <th>Demanda</th>
                                     <th>Fim</th>
                                     <th>Ok?</th>
@@ -96,10 +95,10 @@
                                  <tr ng-repeat="int in data.intervencoes">
                                     <td>{{$index +1}}</td>
                                     <td>{{int.dataHoraIntervencao}}</td>
-                                    <td>53</td>
                                     <td>{{int.demanda}}</td>
                                     <td>{{int.dataHoraFimIntervencao}}</td>
-                                    <td>Sim</td>
+                                    <td ng-if="int.statusOs == 'FECHADA'">Sim</td>
+                                    <td ng-if="int.statusOs == 'ABERTA'">Não</td>
                                  </tr>
                               </tbody>
                            </table>

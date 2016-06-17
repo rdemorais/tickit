@@ -1,15 +1,18 @@
 package br.com.manatus.service.dto;
 
+import br.com.manatus.model.StatusOS;
+
 public class IntervencaoDto {
 	private Long id;
 	private String dataHoraIntervencao;
 	private String dataHoraFimIntervencao;
 	private OSDto os;
 	private DemandaDto demanda;
-	private PessoaDto tecResponsavel;
+	private PessoaDto tecAgendamento;
 	private PessoaDto clienteOrigem;
 	private PessoaDto clienteDestino;
 	private String observacao;
+	private StatusOS statusOs;
 	
 	public Long getId() {
 		return id;
@@ -41,11 +44,12 @@ public class IntervencaoDto {
 	public void setDemanda(DemandaDto demanda) {
 		this.demanda = demanda;
 	}
-	public PessoaDto getTecResponsavel() {
-		return tecResponsavel;
+	
+	public PessoaDto getTecAgendamento() {
+		return tecAgendamento;
 	}
-	public void setTecResponsavel(PessoaDto tecResponsavel) {
-		this.tecResponsavel = tecResponsavel;
+	public void setTecAgendamento(PessoaDto tecAgendamento) {
+		this.tecAgendamento = tecAgendamento;
 	}
 	public PessoaDto getClienteOrigem() {
 		return clienteOrigem;
@@ -64,5 +68,11 @@ public class IntervencaoDto {
 	}
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
+	}
+	public StatusOS getStatusOs() {
+		return statusOs;
+	}
+	public void setStatusOs(StatusOS statusOs) {
+		this.statusOs = statusOs;
 	}
 }
