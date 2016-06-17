@@ -11,6 +11,7 @@
     	listaCategoriaDemanda: '/os/lista-categorias-demandas',
     	listaDemanda: '/os/lista-demandas',
     	listaOs: '/os/lista-os',
+    	listaIntervencoes: '/os/lista-intervencoes',
     	manterOs: '/os/manter',
     	manterIntervencao: '/os/manter-intervencao',
     	loadOs: '/os/load-os',
@@ -63,6 +64,10 @@
 					get: function() { return config.listaOs; },
         	set: function(value) { config.listaOs = value; }
     		},
+    		listaIntervencoes: {
+    			get: function() { return config.listaIntervencoes; },
+        	set: function(value) { config.listaIntervencoes = value; }
+    		},
     		manterIntervencao: {
     			get: function() { return config.manterIntervencao; },
         	set: function(value) { config.manterIntervencao = value; }
@@ -111,6 +116,10 @@
 
 	    	tickitService.listaOs = function() {
 	    		return osService.listaOs();
+	    	};
+
+	    	tickitService.listaIntervencoes = function(idOs) {
+	    		return osService.listaIntervencoes(idOs);
 	    	};
 
 	    	tickitService.manterIntervencao = function(intervencao) {
@@ -182,6 +191,10 @@
 
 	    osS.listaOs = function() {
 	  		return simpleCall(config.listaOs);
+	    };
+
+	    osS.listaIntervencoes = function(idOs) {
+	    	return parameterCall(config.listaIntervencoes, idOs);
 	    };
 
 	    osS.manterIntervencao = function(intervencao) {

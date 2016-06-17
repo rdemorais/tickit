@@ -42,14 +42,24 @@ public class OSServiceImpl implements OSService{
 	}
 	
 	@Transactional
+	public List<IntervencaoDto> listIntervencoes(OSDto osDto) throws AkulaRuntimeException {
+		return osDao.listIntervencao(osDto);
+	}
+	
+	@Transactional
 	public PessoaDto getUsuarioLogado() throws AkulaRuntimeException {
 		Usuario user = oauth2SentinelaService.usuarioLogado();
 		PessoaDto usuarioLogado = osDao.loadPessoa(user.getLogin());
 		return usuarioLogado;
 	}
 	
+	@Transactional
 	public OSDto loadOS(Long id) throws AkulaRuntimeException {
-		return osDao.loadOS(id);
+		OSDto osDto = osDao.loadOS(id);
+		List<IntervencaoDto> intervencoes = listIntervencoes(osDto);
+		osDto.setIntervencoes(intervencoes);
+		
+		return osDto;
 	}
 	
 	@Transactional

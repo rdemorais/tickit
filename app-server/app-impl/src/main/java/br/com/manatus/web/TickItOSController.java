@@ -67,6 +67,20 @@ public class TickItOSController {
 		}
 	}
 	
+	@RequestMapping(value="/lista-intervencoes", 
+			method=RequestMethod.POST)
+	@ResponseBody
+	public TickItResponse listaIntervencoes(@RequestBody Long idOs) {
+		try {
+			OSDto dto = new OSDto();
+			dto.setId(idOs);
+			return TickItResponse.ok(osService.listIntervencoes(dto));
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage(), e);
+			return TickItResponse.error(e.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/manter-intervencao", 
 			method=RequestMethod.POST)
 	@ResponseBody

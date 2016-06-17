@@ -10,6 +10,7 @@ import br.com.manatus.exc.AkulaDaoRuntimeException;
 import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
 import br.com.manatus.service.dto.DemandaDto;
+import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
 import br.com.manatus.service.dto.TipoOSDto;
@@ -92,6 +93,32 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 			hql.append("JOIN os.tecResponsavel tec ");
 			
 			Query q = em.createQuery(hql.toString());
+			return q.getResultList();
+		} catch (Exception e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<IntervencaoDto> listIntervencao(OSDto os) throws AkulaRuntimeException {
+		try {
+			StringBuffer hql = new StringBuffer();
+			
+			hql.append("SELECT new br.com.manatus.service.dto.IntervencaoDto(");
+			hql.append("inter.id, ");
+			hql.append("inter.dataHoraIntervencao, ");
+			hql.append("inter.dataHoraFimIntervencao, ");
+			hql.append("dem.demanda, ");
+			hql.append("inter.observacao) ");
+			hql.append("FROM Intervencao inter ");
+			hql.append("JOIN inter.demanda dem ");
+			hql.append("WHERE inter.os.id = :osId ");
+			hql.append("ORDER BY inter.dataHoraIntervencao ASC ");
+			
+			Query q = em.createQuery(hql.toString());
+			
+			q.setParameter("osId", os.getId());
+			
 			return q.getResultList();
 		} catch (Exception e) {
 			throw new AkulaDaoRuntimeException(e.getMessage(), e);

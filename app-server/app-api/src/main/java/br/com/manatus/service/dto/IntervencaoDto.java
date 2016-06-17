@@ -1,5 +1,8 @@
 package br.com.manatus.service.dto;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import br.com.manatus.model.StatusOS;
 
 public class IntervencaoDto {
@@ -13,6 +16,19 @@ public class IntervencaoDto {
 	private PessoaDto clienteDestino;
 	private String observacao;
 	private StatusOS statusOs;
+	
+	public IntervencaoDto() {
+	
+	}
+	
+	public IntervencaoDto(Long id, Date dataHoraIntervencao, Date dataHoraFimIntervencao, String demanda, String observacao) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		this.id = id;
+		this.dataHoraIntervencao = sdf.format(dataHoraFimIntervencao);
+		this.dataHoraFimIntervencao = sdf.format(dataHoraFimIntervencao);
+		this.demanda = new DemandaDto(1L, demanda);
+		this.observacao = observacao;
+	}
 	
 	public Long getId() {
 		return id;

@@ -1,8 +1,10 @@
 package br.com.manatus.service.dto;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class OSDto {
 	private Long id;
@@ -17,6 +19,7 @@ public class OSDto {
 	private PessoaDto cliente;
 	private PessoaDto tecResponsavel;
 	private PessoaDto tecAgendamento;
+	private List<IntervencaoDto> intervencoes = new ArrayList<IntervencaoDto>();
 	
 	public OSDto() {
 	
@@ -120,6 +123,15 @@ public class OSDto {
 	public void setTecAgendamento(PessoaDto tecAgendamento) {
 		this.tecAgendamento = tecAgendamento;
 	}
+	
+	public List<IntervencaoDto> getIntervencoes() {
+		return intervencoes;
+	}
+
+	public void setIntervencoes(List<IntervencaoDto> intervencoes) {
+		this.intervencoes = intervencoes;
+	}
+
 	@Override
 	public String toString() {
 		return "OSDto [id=" + id + ", dataHoraChamado=" + dataHoraChamado + ", descricaoDemanda=" + descricaoDemanda

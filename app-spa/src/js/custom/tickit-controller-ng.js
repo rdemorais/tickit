@@ -45,7 +45,6 @@
     			listaClientesDestino: []
     		},
     		tecAgendamento: null,
-    		intervencoes: [],
     		os: {}
     	};
 
@@ -97,7 +96,11 @@
         modalInstance.result.then(function (intervencao) {
         	tickitService.manterIntervencao(intervencao).then(function(tkResponse) {
         		if(tkResponse.status = 'success') {
-        			$scope.data.intervencoes.push(intervencao);
+        			tickitService.listaIntervencoes($scope.data.os.id).then(function(tkResponse) {
+        				if(tkResponse.status = 'success') {
+        					$scope.data.os.intervencoes = tkResponse.obj;
+        				}
+        			});
         		}
         	});
         }, function() {
