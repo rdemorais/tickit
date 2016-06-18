@@ -42,12 +42,26 @@ public class TickItOSController {
 		}
 	}
 	
+	@RequestMapping(value="/count-os", 
+			method=RequestMethod.POST)
+	@ResponseBody
+	public TickItResponse conuntOs() {
+		try {
+			Long countOs = osService.countOs();
+			logger.debug("Retornando contagem de OSs: " + countOs);
+			return TickItResponse.ok(countOs);
+		} catch (RuntimeException e) {
+			logger.error(e.getMessage(), e);
+			return TickItResponse.error(e.getMessage());
+		}
+	}
+	
 	@RequestMapping(value="/lista-os", 
 			method=RequestMethod.POST)
 	@ResponseBody
-	public TickItResponse listOs() {
+	public TickItResponse listOs(@RequestBody int pag) {
 		try {
-			return TickItResponse.ok(osService.listOS());
+			return TickItResponse.ok(osService.listOS(pag));
 		} catch (RuntimeException e) {
 			logger.error(e.getMessage(), e);
 			return TickItResponse.error(e.getMessage());

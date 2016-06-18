@@ -11,7 +11,8 @@ import br.com.manatus.service.dto.PessoaDto;
 import br.com.manatus.service.dto.TipoOSDto;
 
 public interface OSService {
-	public List<OSDto> listOS() throws AkulaRuntimeException;
+	public Long countOs() throws AkulaRuntimeException;
+	public List<OSDto> listOS(int pag) throws AkulaRuntimeException;
 	public List<IntervencaoDto> listIntervencoes(OSDto osDto) throws AkulaRuntimeException;
 	public PessoaDto getUsuarioLogado() throws AkulaRuntimeException;
 	public OSDto loadOS(Long id) throws AkulaRuntimeException;

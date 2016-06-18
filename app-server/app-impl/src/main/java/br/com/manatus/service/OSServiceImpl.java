@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.akula.api.auditoria.SentinelaAuditoriaEventPublisher;
+import br.com.akula.api.config.AkulaPropertyFile;
 import br.com.akula.api.model.EventoAuditoria;
 import br.com.akula.api.model.Usuario;
 import br.com.akula.api.service.SentinelaService;
@@ -36,9 +37,21 @@ public class OSServiceImpl implements OSService{
 	@Autowired
 	private SentinelaService oauth2SentinelaService;
 	
+	@Autowired
+	private AkulaPropertyFile akulaPropertyFile;
+	
 	@Transactional
-	public List<OSDto> listOS() throws AkulaRuntimeException {
-		return osDao.listOS();
+	public Long countOs() throws AkulaRuntimeException {
+		return osDao.countOs();
+	}
+	
+	@Transactional
+	public List<OSDto> listOS(int pag) throws AkulaRuntimeException {
+		int maxResults = new Integer(akulaPropertyFile.getProperty("tickit.lista.itens.max"));
+		
+		int firstResult = (pag - 1) * maxResults;
+		
+		return osDao.listOS(firstResult, maxResults);
 	}
 	
 	@Transactional

@@ -78,8 +78,26 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 		}
 	}
 	
+	public Long countOs() throws AkulaRuntimeException {
+		try {
+			StringBuffer hql = new StringBuffer();
+			
+			hql.append("SELECT COUNT(os.id) FROM OS os");
+			
+			Query q = em.createQuery(hql.toString());
+			
+			return (Long) q.getSingleResult();
+		} catch (NonUniqueResultException e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
+		} catch (NoResultException e) {
+			return 0L;
+		} catch (Exception e) {
+			throw new AkulaDaoRuntimeException(e.getMessage(), e);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
-	public List<OSDto> listOS() throws AkulaRuntimeException {
+	public List<OSDto> listOS(int firstResult, int maxResults) throws AkulaRuntimeException {
 		try {
 			StringBuffer hql = new StringBuffer();
 			hql.append("SELECT new br.com.manatus.service.dto.OSDto(");
@@ -93,6 +111,10 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 			hql.append("JOIN os.tecResponsavel tec ");
 			
 			Query q = em.createQuery(hql.toString());
+			
+			q.setFirstResult(firstResult);
+			q.setMaxResults(maxResults);
+			
 			return q.getResultList();
 		} catch (Exception e) {
 			throw new AkulaDaoRuntimeException(e.getMessage(), e);

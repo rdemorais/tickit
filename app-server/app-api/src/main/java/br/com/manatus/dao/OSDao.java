@@ -13,7 +13,8 @@ import br.com.manatus.service.dto.TipoOSDto;
 public interface OSDao extends Dao{
 	public PessoaDto loadPessoa(String email) throws AkulaRuntimeException;
 	public OSDto loadOS(Long osId) throws AkulaRuntimeException;
-	public List<OSDto> listOS() throws AkulaRuntimeException;
+	public List<OSDto> listOS(int firstResult, int maxResults) throws AkulaRuntimeException;
+	public Long countOs() throws AkulaRuntimeException;
 	public List<IntervencaoDto> listIntervencao(OSDto os) throws AkulaRuntimeException;
 	public List<PessoaDto> listClientes() throws AkulaRuntimeException;
 	public List<PessoaDto> listFuncionarios() throws AkulaRuntimeException;

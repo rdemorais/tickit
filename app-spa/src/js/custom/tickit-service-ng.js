@@ -12,6 +12,7 @@
     	listaDemanda: '/os/lista-demandas',
     	listaOs: '/os/lista-os',
     	listaIntervencoes: '/os/lista-intervencoes',
+    	countOs: '/os/count-os',
     	manterOs: '/os/manter',
     	manterIntervencao: '/os/manter-intervencao',
     	loadOs: '/os/load-os',
@@ -79,6 +80,10 @@
     		loadOs: {
     			get: function() { return config.loadOs; },
         	set: function(value) { config.loadOs = value; }
+    		},
+    		countOs: {
+    			get: function() { return config.countOs; },
+        	set: function(value) { config.countOs = value; }
     		}
     	});
 
@@ -114,8 +119,8 @@
 	    		return osService.listaDemanda(categoriaDemanda);
 	    	};
 
-	    	tickitService.listaOs = function() {
-	    		return osService.listaOs();
+	    	tickitService.listaOs = function(pag) {
+	    		return osService.listaOs(pag);
 	    	};
 
 	    	tickitService.listaIntervencoes = function(idOs) {
@@ -133,6 +138,11 @@
 	    	tickitService.loadOs = function(os) {
 	    		return osService.loadOs(os);
 	    	};
+
+	    	tickitService.countOs = function() {
+	    		return osService.countOs();
+	    	};
+
 	    	return tickitService;
 	    }
 	    this.$get.$inject = ['osService']
@@ -189,8 +199,8 @@
 	  		return parameterCall(config.listaDemanda, categoriaDemanda);
 	    };
 
-	    osS.listaOs = function() {
-	  		return simpleCall(config.listaOs);
+	    osS.listaOs = function(pag) {
+	  		return parameterCall(config.listaOs, pag);
 	    };
 
 	    osS.listaIntervencoes = function(idOs) {
@@ -207,6 +217,10 @@
 
 	    osS.loadOs = function(osId) {
 	  		return parameterCall(config.loadOs, osId);
+	    };
+
+	    osS.countOs = function() {
+	  		return simpleCall(config.countOs);
 	    };
 
 	    return osS;

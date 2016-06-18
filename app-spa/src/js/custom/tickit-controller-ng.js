@@ -25,8 +25,8 @@
     	};
     };
 
-    tickitOSListaController.$inject = ['$scope', '$state'];
-    function tickitOSListaController($scope, $state) {
+    tickitOSListaController.$inject = ['$scope', '$state', 'tickitService'];
+    function tickitOSListaController($scope, $state, tickitService) {
 
     };
 
