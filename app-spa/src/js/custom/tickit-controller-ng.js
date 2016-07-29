@@ -27,7 +27,7 @@
 
     tickitOSListaController.$inject = ['$scope', '$state', 'tickitService'];
     function tickitOSListaController($scope, $state, tickitService) {
-
+      
     };
 
     tickitDashboardController.$inject = ['$scope', '$state'];

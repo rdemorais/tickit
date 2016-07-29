@@ -1,7 +1,7 @@
 .row
 	.row
 		.col-lg-3.pull-right
-			.input-group.m-b
+			.input-group.m-b.pull-right
 				a(ui-sref="app.os-manter")
 					button.btn.btn-success Nova OS
 		.col-lg-4.pull-right
@@ -11,9 +11,8 @@
 				select.form-control
 					option Por data limite de atendimento
 					option Por data de agendamento
-		.col-lg-3
-			button.btn.btn-pill-left.btn-default(type='button') Abertas		
-			button.btn.btn-pill-right.btn-default(type='button') Fechadas
+		.col-lg-5
+			tickit-filtros
 	.row
 		.col-lg-12.mt
 			.row

@@ -1,0 +1,55 @@
+div
+	.col-md-2
+		.btn-group.mb-sm.mr(uib-dropdown='dropdown')
+			button.btn.dropdown-toggle.btn-xs(type='button', ng-disabled='disabled', class="btn-default", uib-dropdown-toggle="", ripple="") Filtros
+				| &nbsp;
+				span.caret
+			ul.dropdown-menu(role='menu')
+				li
+					a(href='', ng-click="addFiltro('numChamado')") Número do Chamado
+				li
+					a(href='', ng-click="addFiltro('cliente')") Cliente
+				li
+					a(href='', ng-click="addFiltro('tipoOs')") Tipo de OS
+				li
+					a(href='', ng-click="addFiltro('periodo')") Período de Abertura
+				li
+					a(href='', ng-click="addFiltro('interv')") Intervenções
+				li
+					a(href='', ng-click="addFiltro('funcionario')") Funcionário
+				li.divider
+				li
+					a(href='', ng-click="limparFiltros()") Limpar filtros
+	.col-md-10
+		.row.mb(ng-repeat="filtro in filtros")
+			div(ng-if="filtro == 'numChamado'")
+				.col-md-5
+					button.btn.btn-pill-right.btn-info.btn-xs(ng-click="removerFiltro('numChamado')") Número do Chamado
+						em.fa.fa-times-circle
+				.col-md-7
+					input.input-xs(placeholder="Informe o chamado...", 
+						style="width: 100%", 
+						ng-model="data.numChamado")
+			div(ng-if="filtro == 'cliente'")
+				.col-md-3
+					button.btn.btn-pill-right.btn-info.btn-xs(ng-click="removerFiltro('cliente')") Cliente
+						em.fa.fa-times-circle
+				.col-md-9
+					ui-select(ng-model='data.cliente', theme='selectize')
+						ui-select-match(placeholder='Selecione ou pesquise o cliente') {{$select.selected.nome}}
+						ui-select-choices(repeat='cli in data.listas.listaClientes | propsFilter: {nome: $select.search, email: $select.search}')
+							div(ng-bind-html='cli.nome | highlight: $select.search')
+							small
+								|eMail: 
+								span(ng-bind-html="''+cli.email | highlight: $select.search")
+								|&nbsp; Natureza: 
+								span(ng-bind-html="''+cli.tipoCliente | highlight: $select.search")
+			div(ng-if="filtro == 'tipoOs'")
+				.col-md-3
+					button.btn.btn-pill-right.btn-info.btn-xs(ng-click="removerFiltro('tipoOs')") Tipo OS
+						em.fa.fa-times-circle
+				.col-md-9
+					ui-select(ng-model='data.tipoOs', theme='bootstrap')
+						ui-select-match(placeholder='Selecione ou pesquise o tipo de Os') {{$select.selected.tipoOs}}
+						ui-select-choices(repeat='tOs in data.listas.listaTipoOs | propsFilter: {tipoOs: $select.search}')
+							div(ng-bind-html='tOs.tipoOs | highlight: $select.search')

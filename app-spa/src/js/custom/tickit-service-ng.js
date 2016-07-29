@@ -119,8 +119,8 @@
 	    		return osService.listaDemanda(categoriaDemanda);
 	    	};
 
-	    	tickitService.listaOs = function(pag) {
-	    		return osService.listaOs(pag);
+	    	tickitService.listaOs = function(filtro) {
+	    		return osService.listaOs(filtro);
 	    	};
 
 	    	tickitService.listaIntervencoes = function(idOs) {
@@ -199,8 +199,8 @@
 	  		return parameterCall(config.listaDemanda, categoriaDemanda);
 	    };
 
-	    osS.listaOs = function(pag) {
-	  		return parameterCall(config.listaOs, pag);
+	    osS.listaOs = function(filtro) {
+	  		return parameterCall(config.listaOs, filtro);
 	    };
 
 	    osS.listaIntervencoes = function(idOs) {

@@ -1,0 +1,74 @@
+<div>
+   <div class="col-md-2">
+      <div uib-dropdown="dropdown" class="btn-group mb-sm mr">
+         <button type="button" ng-disabled="disabled" uib-dropdown-toggle="" ripple="" class="btn dropdown-toggle btn-xs btn-default">Filtros &nbsp;
+            <span class="caret"></span>
+         </button>
+         <ul role="menu" class="dropdown-menu">
+            <li><a href="" ng-click="addFiltro('numChamado')">Número do Chamado</a>
+            </li>
+            <li><a href="" ng-click="addFiltro('cliente')">Cliente</a>
+            </li>
+            <li><a href="" ng-click="addFiltro('tipoOs')">Tipo de OS</a>
+            </li>
+            <li><a href="" ng-click="addFiltro('periodo')">Período de Abertura</a>
+            </li>
+            <li><a href="" ng-click="addFiltro('interv')">Intervenções</a>
+            </li>
+            <li><a href="" ng-click="addFiltro('funcionario')">Funcionário</a>
+            </li>
+            <li class="divider"></li>
+            <li><a href="" ng-click="limparFiltros()">Limpar filtros</a>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="col-md-10">
+      <div ng-repeat="filtro in filtros" class="row mb">
+         <div ng-if="filtro == 'numChamado'">
+            <div class="col-md-5">
+               <button ng-click="removerFiltro('numChamado')" class="btn btn-pill-right btn-info btn-xs">Número do Chamado
+                  <em class="fa fa-times-circle"></em>
+               </button>
+            </div>
+            <div class="col-md-7">
+               <input placeholder="Informe o chamado..." style="width: 100%" ng-model="data.numChamado" class="input-xs" />
+            </div>
+         </div>
+         <div ng-if="filtro == 'cliente'">
+            <div class="col-md-3">
+               <button ng-click="removerFiltro('cliente')" class="btn btn-pill-right btn-info btn-xs">Cliente
+                  <em class="fa fa-times-circle"></em>
+               </button>
+            </div>
+            <div class="col-md-9">
+               <ui-select ng-model="data.cliente" theme="selectize">
+                  <ui-select-match placeholder="Selecione ou pesquise o cliente">{{$select.selected.nome}}</ui-select-match>
+                  <ui-select-choices repeat="cli in data.listas.listaClientes | propsFilter: {nome: $select.search, email: $select.search}">
+                     <div ng-bind-html="cli.nome | highlight: $select.search"></div>
+                     <small>eMail:
+                        <span ng-bind-html="''+cli.email | highlight: $select.search"></span>&nbsp; Natureza:
+                        <span ng-bind-html="''+cli.tipoCliente | highlight: $select.search"></span>
+                     </small>
+                  </ui-select-choices>
+               </ui-select>
+            </div>
+         </div>
+         <div ng-if="filtro == 'tipoOs'">
+            <div class="col-md-3">
+               <button ng-click="removerFiltro('tipoOs')" class="btn btn-pill-right btn-info btn-xs">Tipo OS
+                  <em class="fa fa-times-circle"></em>
+               </button>
+            </div>
+            <div class="col-md-9">
+               <ui-select ng-model="data.tipoOs" theme="bootstrap">
+                  <ui-select-match placeholder="Selecione ou pesquise o tipo de Os">{{$select.selected.tipoOs}}</ui-select-match>
+                  <ui-select-choices repeat="tOs in data.listas.listaTipoOs | propsFilter: {tipoOs: $select.search}">
+                     <div ng-bind-html="tOs.tipoOs | highlight: $select.search"></div>
+                  </ui-select-choices>
+               </ui-select>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

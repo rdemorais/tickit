@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import br.com.manatus.service.OSService;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
 import br.com.manatus.service.dto.DemandaDto;
+import br.com.manatus.service.dto.FiltroDto;
 import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
@@ -59,9 +60,9 @@ public class TickItOSController {
 	@RequestMapping(value="/lista-os", 
 			method=RequestMethod.POST)
 	@ResponseBody
-	public TickItResponse listOs(@RequestBody int pag) {
+	public TickItResponse listOs(@RequestBody FiltroDto filtro) {
 		try {
-			return TickItResponse.ok(osService.listOS(pag));
+			return TickItResponse.ok(osService.listOS(filtro));
 		} catch (RuntimeException e) {
 			logger.error(e.getMessage(), e);
 			return TickItResponse.error(e.getMessage());

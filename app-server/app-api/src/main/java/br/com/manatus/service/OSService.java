@@ -5,6 +5,7 @@ import java.util.List;
 import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
 import br.com.manatus.service.dto.DemandaDto;
+import br.com.manatus.service.dto.FiltroDto;
 import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
@@ -12,7 +13,7 @@ import br.com.manatus.service.dto.TipoOSDto;
 
 public interface OSService {
 	public Long countOs() throws AkulaRuntimeException;
-	public List<OSDto> listOS(int pag) throws AkulaRuntimeException;
+	public List<OSDto> listOS(FiltroDto filtro) throws AkulaRuntimeException;
 	public List<IntervencaoDto> listIntervencoes(OSDto osDto) throws AkulaRuntimeException;
 	public PessoaDto getUsuarioLogado() throws AkulaRuntimeException;
 	public OSDto loadOS(Long id) throws AkulaRuntimeException;

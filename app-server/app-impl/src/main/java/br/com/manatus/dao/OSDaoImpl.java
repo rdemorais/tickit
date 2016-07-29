@@ -10,6 +10,7 @@ import br.com.manatus.exc.AkulaDaoRuntimeException;
 import br.com.manatus.exc.AkulaRuntimeException;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
 import br.com.manatus.service.dto.DemandaDto;
+import br.com.manatus.service.dto.FiltroDto;
 import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
@@ -97,7 +98,7 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<OSDto> listOS(int firstResult, int maxResults) throws AkulaRuntimeException {
+	public List<OSDto> listOS(FiltroDto filtro, int firstResult, int maxResults) throws AkulaRuntimeException {
 		try {
 			StringBuffer hql = new StringBuffer();
 			hql.append("SELECT new br.com.manatus.service.dto.OSDto(");
@@ -110,7 +111,38 @@ public class OSDaoImpl extends DaoImpl implements OSDao{
 			hql.append("JOIN os.cliente c ");
 			hql.append("JOIN os.tecResponsavel tec ");
 			
+			if(filtro.getTipoOs()  != null) {
+				hql.append("JOIN os.tipoOs tOs ");
+			}
+			
+			hql.append("WHERE 1=1 ");
+			
+			//filtros
+			if(!filtro.getNumChamado().equals("")) {
+				hql.append("AND os.id = :idChamado ");
+			}
+			
+			if(filtro.getCliente() != null) {
+				hql.append("AND c.id = :idCliente ");
+			}
+			
+			if(filtro.getTipoOs() != null) {
+				hql.append("AND tOs.id = :idTOs ");
+			}
+			
 			Query q = em.createQuery(hql.toString());
+			
+			if(!filtro.getNumChamado().equals("")) {
+				q.setParameter("idChamado", filtro.getIdChamado());
+			}
+			
+			if(filtro.getCliente() != null) {
+				q.setParameter("idCliente", filtro.getCliente().getId());
+			}
+			
+			if(filtro.getTipoOs() != null) {
+				q.setParameter("idTOs", filtro.getTipoOs().getId());
+			}
 			
 			q.setFirstResult(firstResult);
 			q.setMaxResults(maxResults);

@@ -18,6 +18,7 @@ import br.com.manatus.model.OS;
 import br.com.manatus.model.OSImpl;
 import br.com.manatus.service.dto.CategoriaDemandaDto;
 import br.com.manatus.service.dto.DemandaDto;
+import br.com.manatus.service.dto.FiltroDto;
 import br.com.manatus.service.dto.IntervencaoDto;
 import br.com.manatus.service.dto.OSDto;
 import br.com.manatus.service.dto.PessoaDto;
@@ -46,12 +47,25 @@ public class OSServiceImpl implements OSService{
 	}
 	
 	@Transactional
-	public List<OSDto> listOS(int pag) throws AkulaRuntimeException {
+	public List<OSDto> listOS(FiltroDto filtro) throws AkulaRuntimeException {
 		int maxResults = new Integer(akulaPropertyFile.getProperty("tickit.lista.itens.max"));
+		int pag = filtro.getPagina();
 		
 		int firstResult = (pag - 1) * maxResults;
 		
-		return osDao.listOS(firstResult, maxResults);
+		//Separar numChamado
+		String numChamado = filtro.getNumChamado();
+		if(!numChamado.equals("")) {
+			String[] numAno = numChamado.split("/");
+			
+			Long idChamado = new Long(numAno[0]);
+			Long anoChamado = new Long(numAno[1]);
+			
+			filtro.setIdChamado(idChamado);
+			filtro.setAnoChamado(anoChamado);
+		}
+		
+		return osDao.listOS(filtro, firstResult, maxResults);
 	}
 	
 	@Transactional
